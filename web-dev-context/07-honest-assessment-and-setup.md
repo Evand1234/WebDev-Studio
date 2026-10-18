@@ -39,9 +39,9 @@ Connect this repo to **Vercel** (free). Every push then gets its own link you op
 
 ## The build plan (one stage at a time, you approve each on your phone)
 1. **Design system and skeleton.** *Built 18 Oct 2026, waiting on Evan's look approval (code in `site/`, preview via `npm run preview:single`, published as a private claude.ai artifact).* Next.js site in `site/`, palette, fonts, spacing, the reusable iPhone and laptop components, Lenis + GSAP set up, deployed to Vercel. You approve the look from a single sample screen.
-2. **Hero.**
-3. **Showcase** (the scroll piece that plays like a video): one business, weak site to great site, on the phone and laptop, smooth and reversible. Built from Container Scroll + Sticky Scroll Reveal ideas. This gets the most polish time.
-4. **The rest** (can run in parallel): how it works, proof (TappedFlow), packages, FAQ, contact, footer.
+2. **Hero.** *Done 18 Oct.*
+3. *(Done 18 Oct.)* **Showcase** (the scroll piece that plays like a video): one business, weak site to great site, on the phone and laptop, smooth and reversible. Built from Container Scroll + Sticky Scroll Reveal ideas. This gets the most polish time.
+4. *(Done 18 Oct, built in parallel.)* **The rest**: how it works, proof (TappedFlow), packages, FAQ, contact, footer.
 5. **Polish and launch**: smoothness check with CPU throttling, Lighthouse, SEO, your real-phone check, then the domain.
 
 Each stage: plan in plan mode (Opus 5.5) → you see the plan and the 21st.dev links it's using → build (Sonnet 5.5) → screenshots at 375 and 1440 px → preview link → your reaction → next stage.

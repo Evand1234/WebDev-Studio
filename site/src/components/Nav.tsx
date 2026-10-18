@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { loadGsap } from "@/lib/gsapLoader";
 import { waLink } from "@/config/contact";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
@@ -23,23 +22,28 @@ export function Nav() {
 
   // Dark-glass variant while the bar sits over a dark band (the showcase, the footer).
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const active = new Set<string>();
-    const sync = () => setDark(active.size > 0);
-    const triggers = [
-      { id: "showcase", start: "top+=110 52", end: "bottom-=110 52" },
-      { id: "contact", start: "top+=40 52", end: "bottom bottom" },
-    ].flatMap(({ id, start, end }) => {
-      const el = document.getElementById(id);
-      if (!el) return [];
-      return [ScrollTrigger.create({
-        trigger: el, start, end, refreshPriority: -10,
-        onToggle: (self) => { if (self.isActive) active.add(id); else active.delete(id); sync(); },
-      })];
+    let dead = false;
+    let kill: (() => void) | undefined;
+    loadGsap().then(({ ScrollTrigger }) => {
+      if (dead) return;
+      const active = new Set<string>();
+      const sync = () => setDark(active.size > 0);
+      const triggers = [
+        { id: "showcase", start: "top+=110 52", end: "bottom-=110 52" },
+        { id: "contact", start: "top+=40 52", end: "bottom bottom" },
+      ].flatMap(({ id, start, end }) => {
+        const el = document.getElementById(id);
+        if (!el) return [];
+        return [{ id, t: ScrollTrigger.create({
+          trigger: el, start, end, refreshPriority: -10,
+          onToggle: (self) => { if (self.isActive) active.add(id); else active.delete(id); sync(); },
+        }) }];
+      });
+      triggers.forEach(({ id, t }) => { if (t.isActive) active.add(id); });
+      sync();
+      kill = () => triggers.forEach(({ t }) => t.kill());
     });
-    triggers.forEach((t, i) => { const id = i === 0 ? "showcase" : "contact"; if (t.isActive) active.add(id); });
-    sync();
-    return () => triggers.forEach((t) => t.kill());
+    return () => { dead = true; kill?.(); };
   }, []);
 
   useEffect(() => {

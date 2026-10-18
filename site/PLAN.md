@@ -77,12 +77,18 @@ Rules: one GSAP timeline per breakpoint (`gsap.matchMedia`), pin spacing true, `
 
 Done: stage 1 skeleton and hero; stage 2 hero polish (rotating word, tilt, anchors); stage 3 pinned showcase; stage 4 integration (Work, How it works, Packages, FAQ, footer contact, brand mark, icons, OG image, manifest, JSON-LD, dark-glass nav, mobile menu sheet). Page order: Nav, Hero, Showcase, Work, HowItWorks, Packages, Faq, Footer.
 
-QA at 360/375/390/768/1440: no horizontal scroll, zero console errors, reduced motion renders static cards, tsc and build clean, single-file preview works offline (about 1.5 MB). Lighthouse mobile: accessibility, best practices, SEO 100; CLS 0; TBT about 140 ms; performance 73-74 (simulated LCP about 7 s).
+QA at 360/375/390/768/1440: no horizontal scroll, zero console errors, reduced motion renders static cards, tsc and build clean, single-file preview works offline (about 1.5 MB). Lighthouse mobile (served with brotli, like real hosting): accessibility, best practices, SEO 100; CLS 0; performance 88-93 (FCP 1.4 s, LCP 2.2 s, TBT 280-410 ms). Before the speed pass it was 61-74.
 
 ## Left to do
-- LCP: Lighthouse reports the nav logo text with a long render delay (font swap plus hydration on a throttled CPU). Try font preload or `display: optional`, and less hydration work.
+- Performance: TBT is now the only weak number (first render about 500 ms and hydration about 200 ms on the 4x throttle). Next ideas: fewer client components (server-render the showcase markup), cheaper first layout of the hero devices.
 - Real TappedFlow screenshot (the Work phone for it is a placeholder concept).
 - Branded email address, domain and hosting (Vercel), replace the preview link.
 - Test on a real iPhone and a mid-range Android.
 - Real client work and testimonials once they exist (nothing is invented today).
 - Keep the first Work phone mounts (idle, about 5 s after load) in mind when measuring frame timing.
+
+## Speed pass notes (18 Oct 2026)
+- CSS is inlined into the HTML (`experimental.inlineCss`); the single-file preview builds with `BM_SINGLE=1` (no inlining) because Next's flight data would otherwise carry CSS urls that cannot be rewritten.
+- The showcase pin is pure CSS (`.sc__track` reserves the full scroll length, `.sc__stage` is `position: sticky`), so the page height never changes when GSAP arrives. GSAP, ScrollTrigger, Lenis and the timeline load in their own chunks on first intent (scroll, touch, key, press), straight away if the page was already scrolled or opened with a #hash, or 8 s after load. `node scripts/pin-stability.mjs` proves it (fast flick into the showcase at 4x CPU: document height, showcase top and CLS unchanged).
+- Reveal and the rotating word are CSS transitions, so the `motion` library is no longer in the bundle.
+- Work phones are built in a quiet moment (scroll paused, idle) once within three screens, or at once when visible.

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
-import { gsap } from "gsap";
+import { loadGsap } from "@/lib/gsapLoader";
 
 /** Desktop only: tilts its children a few degrees toward the cursor. Transform only, eased by GSAP. */
 export function Tilt({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -11,6 +11,11 @@ export function Tilt({ children, className = "" }: { children: ReactNode; classN
     const el = ref.current;
     const zone = el?.closest("section");
     if (!el || !zone) return;
+    if (!window.matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)").matches) return;
+    let dead = false;
+    let undo: (() => void) | undefined;
+    loadGsap().then(({ gsap }) => {
+    if (dead) return;
     const mm = gsap.matchMedia();
     mm.add("(pointer: fine) and (prefers-reduced-motion: no-preference)", () => {
       gsap.set(el, { transformPerspective: 1400, transformOrigin: "50% 50%" });
@@ -32,7 +37,9 @@ export function Tilt({ children, className = "" }: { children: ReactNode; classN
         gsap.set(el, { clearProps: "transform" });
       };
     });
-    return () => mm.revert();
+    undo = () => mm.revert();
+    });
+    return () => { dead = true; undo?.(); };
   }, []);
 
   return <div ref={ref} className={className}>{children}</div>;

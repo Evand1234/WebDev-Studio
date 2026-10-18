@@ -6,10 +6,10 @@ import { PlumberSite, CafeSite, GuesthouseSite, SalonSite } from "./ConceptSites
 import "./work.css";
 
 const concepts = [
-  { id: "plumber", label: "Plumber", line: "Call-first, built for emergencies.", Site: PlumberSite },
-  { id: "cafe", label: "Cafe", line: "Warm, with the menu up front.", Site: CafeSite },
-  { id: "guesthouse", label: "Guesthouse", line: "Calm, with rooms and availability.", Site: GuesthouseSite },
-  { id: "salon", label: "Salon", line: "Soft and simple, made for booking.", Site: SalonSite },
+  { id: "plumber", tone: "light", label: "Plumber", line: "Call-first, built for emergencies.", Site: PlumberSite },
+  { id: "cafe", tone: "dark", label: "Cafe", line: "Warm, with the menu up front.", Site: CafeSite },
+  { id: "guesthouse", tone: "light", label: "Guesthouse", line: "Calm, with rooms and availability.", Site: GuesthouseSite },
+  { id: "salon", tone: "dark", label: "Salon", line: "Soft and simple, made for booking.", Site: SalonSite },
 ] as const;
 
 export function Work() {
@@ -24,9 +24,9 @@ export function Work() {
       </div>
 
       <ul className="work__rail" aria-label="Concept websites for different trades">
-        {concepts.map(({ id, label, line, Site }, n) => (
+        {concepts.map(({ id, label, line, tone, Site }, n) => (
           <li key={id} className="work__item"><figure>
-            <LazyPhone order={n}><Site /></LazyPhone>
+            <LazyPhone order={n} tone={tone}><Site /></LazyPhone>
             <figcaption>
               <span className="work__tag">Concept</span>
               <strong>{label}</strong>

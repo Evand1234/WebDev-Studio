@@ -124,7 +124,9 @@
 .sc::before, .sc::after { content: ""; position: absolute; left: 0; right: 0; height: 190px; pointer-events: none; }
 .sc::before { top: 0; background: linear-gradient(180deg, var(--color-paper), rgba(246,248,248,0)); }
 .sc::after { bottom: 0; background: linear-gradient(0deg, var(--color-paper), rgba(246,248,248,0)); }
-.sc__stage { position: relative; z-index: 1; height: 100svh; min-height: 560px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding: 84px max(var(--gutter), calc((100vw - var(--maxw)) / 2 + var(--gutter))) 16px; gap: 10px; overflow: hidden;
+.sc__track { --sc-h: max(100svh, 560px); height: calc(var(--sc-h) + 520svh); }
+@media (min-width: 900px) { .sc__track { height: calc(var(--sc-h) + 560svh); } }
+.sc__stage { position: sticky; top: 0; z-index: 1; height: 100svh; min-height: 560px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding: 84px max(var(--gutter), calc((100vw - var(--maxw)) / 2 + var(--gutter))) 16px; gap: 10px; overflow: hidden;
   background: radial-gradient(48% 52% at 50% 56%, rgba(63,111,130,.32), transparent 70%), var(--color-night); }
 .sc__beats { display: grid; }
 .sc-beat { grid-area: 1 / 1; opacity: 0; visibility: hidden; align-self: end; }

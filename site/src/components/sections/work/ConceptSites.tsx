@@ -74,7 +74,7 @@ export function PlumberSite() {
       h1={<>LEAK?<br />WE&rsquo;RE<br />ON IT.</>}
       sub="Burst pipes, geysers and blocked drains, fixed properly."
       hero={
-        <svg viewBox="0 0 390 300" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+        <svg viewBox="0 0 390 300" preserveAspectRatio="xMaxYMid slice" width="100%" height="100%">
           <defs><pattern id="pl-g" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="#ffffff" strokeOpacity=".07" /></pattern></defs>
           <rect width="390" height="300" fill="#0d2b4a" /><rect width="390" height="300" fill="url(#pl-g)" />
           <path d="M-10 90H210a26 26 0 0 1 26 26V300" fill="none" stroke="#ffc933" strokeWidth="22" />
@@ -159,7 +159,7 @@ export function SalonSite() {
       h1={<>Your hair,<br />beautifully<br />done.</>}
       sub="Cut, colour and care from a calm little studio."
       hero={
-        <svg viewBox="0 0 390 300" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+        <svg viewBox="0 0 390 300" preserveAspectRatio="xMaxYMid slice" width="100%" height="100%">
           <rect width="390" height="300" fill="#f1d8d4" />
           <circle cx="290" cy="120" r="150" fill="#e7bdb6" /><circle cx="110" cy="260" r="110" fill="#f7e8e4" />
           <path d="M200 40c60 30 90 80 76 160-8 44-40 78-76 100" fill="none" stroke="#3a1f2d" strokeWidth="3" />

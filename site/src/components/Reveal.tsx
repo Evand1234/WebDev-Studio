@@ -1,23 +1,27 @@
 "use client";
 
-import { motion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
-/** Fade and rise once when scrolled into view. Transform and opacity only. */
+/** Fade and rise once when scrolled into view. CSS transition on transform and opacity; no animation library. */
 export function Reveal({
   children, delay = 0, className = "", as = "div",
 }: { children: ReactNode; delay?: number; className?: string; as?: "div" | "li" }) {
-  const Tag = as === "li" ? motion.li : motion.div;
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") { el.classList.add("is-in"); return; }
+    const io = new IntersectionObserver((es) => {
+      if (es.some((e) => e.isIntersecting)) { el.classList.add("is-in"); io.disconnect(); }
+    }, { rootMargin: "0px 0px -12% 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const Tag = as;
   return (
-    <Tag
-      className={className}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-      transition={{ duration: 0.9, ease, delay }}
-    >
+    <Tag ref={ref as never} className={`reveal${className ? ` ${className}` : ""}`} style={{ "--rv-d": `${delay}s` } as CSSProperties}>
       {children}
     </Tag>
   );

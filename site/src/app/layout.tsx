@@ -54,7 +54,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // The hero devices show these photos; start fetching them before the CSS is parsed.
-  ReactDOM.preload("/img/barber-cut-800.webp", { as: "image" });
+  ReactDOM.preload("/img/barber-cut-800.webp", { as: "image", fetchPriority: "high" });
   ReactDOM.preload("/img/barber-floor-800.webp", { as: "image" });
   return (
     <html lang="en-ZA" className={`${bricolage.variable} ${onest.variable}`}>

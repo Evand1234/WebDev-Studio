@@ -74,6 +74,15 @@ content = content.replace(/<script\b([^>]*?)\ssrc="([^"]+)"([^>]*)><\/script>/gi
   code = safeJs(code);
   return `<script>__bmcs(${JSON.stringify(src)})</script><script${attrs ? " " + attrs : ""}>${code}</script>`;
 });
+// 3b. Lazy chunks (GSAP, Lenis, the showcase timeline) are loaded with import() after the first paint, so they are
+// not in the HTML. Inline every remaining chunk at the end, registered the same way, so nothing is fetched.
+{
+  const seen = new Set([...html.matchAll(/\ssrc="(\/_next\/static\/chunks\/[^"]+\.js)"/g)].map((m) => m[1]));
+  const dir = path.join(root, "_next", "static", "chunks");
+  const extra = fs.readdirSync(dir).filter((f) => f.endsWith(".js") && !seen.has("/_next/static/chunks/" + f));
+  content += extra.map((f) => `<script>__bmcs(${JSON.stringify("/_next/static/chunks/" + f)})</script><script>${safeJs(fs.readFileSync(path.join(dir, f), "utf8"))}</script>`).join("");
+  console.log(`inlined ${extra.length} lazy chunks`);
+}
 // 4. images
 content = content.replace(/(<img\b[^>]*?\ssrc=")([^"]+)(")/gi, (m, a, u, c) => (isLocal(u) ? a + dataUri(u) + c : m));
 content = content.replace(/\ssrcset="([^"]+)"/gi, (m, set) => {

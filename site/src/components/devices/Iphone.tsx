@@ -3,9 +3,9 @@ import { ScaledScreen } from "./ScaledScreen";
 import "./devices.css";
 
 /** iPhone 15 Pro style frame. Children render a live 390px-wide mobile site inside the screen. */
-export function Iphone({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function Iphone({ children, className = "", tone = "light" }: { children: ReactNode; className?: string; tone?: "light" | "dark" }) {
   return (
-    <div className={`iphone ${className}`} aria-hidden="true">
+    <div className={`iphone ${className}`} data-tone={tone} aria-hidden="true">
       <span className="iphone__btn iphone__btn--action" />
       <span className="iphone__btn iphone__btn--vol-up" />
       <span className="iphone__btn iphone__btn--vol-down" />

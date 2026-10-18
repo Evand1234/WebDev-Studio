@@ -213,7 +213,9 @@ p { text-wrap: pretty; }
 
 /* Rotating word in the hero sub-line */
 .rw { display: inline-grid; overflow: hidden; vertical-align: bottom; padding-bottom: .14em; margin-bottom: -.14em; color: var(--color-slate-deep); font-weight: 600; }
-.rw__word { grid-area: 1 / 1; display: block; }
+.rw__word { grid-area: 1 / 1; display: block; opacity: 0; transform: translateY(70%); }
+.rw__word.is-on { opacity: 1; transform: none; transition: transform .7s var(--ease-out-expo), opacity .7s var(--ease-out-expo); }
+.rw__word.is-out { opacity: 0; transform: translateY(-70%); transition: transform .5s var(--ease-out-expo), opacity .5s var(--ease-out-expo); }
 .rw-static { color: var(--color-slate-deep); font-weight: 600; }
 
 /* ================= Section rhythm: one spacing system for every light section ================= */
@@ -232,3 +234,8 @@ p { text-wrap: pretty; }
 .rise--xl { --rise-y: 64px; animation-duration: 1.2s; }
 .fade { animation: fade .9s var(--ease-out-expo) both; animation-delay: var(--d, 0s); }
 @media (prefers-reduced-motion: reduce) { .rise, .fade { animation: none; } }
+
+/* Scroll reveal (Reveal.tsx): fade and rise once */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-out-expo) var(--rv-d, 0s), transform .9s var(--ease-out-expo) var(--rv-d, 0s); }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }

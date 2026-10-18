@@ -57,11 +57,11 @@
 
 /* ================= Concept sites (em; 1em = 16px on 390 wide) ================= */
 .cx { position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column; }
-.cx__head { position: relative; z-index: 2; flex: none; height: 6.2em; padding: 3.8em 1.25em 0; display: flex; align-items: center; justify-content: space-between; }
+.cx__head { position: relative; background: var(--cx-head); z-index: 2; flex: none; height: 6.2em; padding: 3.8em 1.25em 0; display: flex; align-items: center; justify-content: space-between; }
 .cx__brand { display: inline-flex; align-items: center; gap: .55em; font-size: 1em; font-weight: 700; }
 .cx__mark { display: grid; place-items: center; width: 1.9em; height: 1.9em; border-radius: .55em; font-size: .95em; }
 .cx__nav { font-size: .72em; font-weight: 700; letter-spacing: .14em; opacity: .8; }
-.cx__hero { position: relative; flex: none; height: 25em; margin-top: -6.2em; }
+.cx__hero { position: relative; flex: none; height: 19em; overflow: hidden; }
 .cx__art { position: absolute; inset: 0; }
 .cx__art svg { display: block; }
 .cx__copy { position: absolute; left: 1.25em; right: 1.25em; bottom: 1.4em; }
@@ -82,7 +82,7 @@
 .cx__cta { display: block; text-align: center; padding: .95em; font-weight: 700; font-size: 1em; }
 
 /* Plumber: navy + safety yellow, heavy uppercase */
-.cx--plumb { background: #f4f6f8; color: #0d2b4a; font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; }
+.cx--plumb { --cx-head: #0d2b4a; background: #f4f6f8; color: #0d2b4a; font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; }
 .cx--plumb .cx__head { color: #fff; }
 .cx--plumb .cx__mark { background: #ffc933; color: #0d2b4a; }
 .cx--plumb .cx__brand { text-transform: uppercase; letter-spacing: .02em; font-weight: 800; }
@@ -96,7 +96,7 @@
 .cx--plumb .cx__cta { background: #ffc933; color: #0d2b4a; border-radius: .5em; text-transform: uppercase; letter-spacing: .06em; font-weight: 900; }
 
 /* Cafe: cream + espresso + terracotta, soft serif */
-.cx--cafe { background: #f6ecdc; color: #3b2418; font-family: Georgia, "Times New Roman", serif; }
+.cx--cafe { --cx-head: #e9d3b4; background: #f6ecdc; color: #3b2418; font-family: Georgia, "Times New Roman", serif; }
 .cx--cafe .cx__mark { background: #c8553d; color: #f6ecdc; border-radius: 50%; font-style: italic; }
 .cx--cafe .cx__hero { background: #e9d3b4; }
 .cx--cafe .cx__art svg { height: 75%; transform: scale(.66); transform-origin: 100% 0; }
@@ -108,7 +108,7 @@
 .cx--cafe .cx__cta { background: #3b2418; color: #f6ecdc; border-radius: 99em; }
 
 /* Guesthouse: deep green, sage and brass, elegant serif */
-.cx--stay { background: #25382e; color: #f3eedf; font-family: "Iowan Old Style", Georgia, "Times New Roman", serif; }
+.cx--stay { --cx-head: #25382e; background: #25382e; color: #f3eedf; font-family: "Iowan Old Style", Georgia, "Times New Roman", serif; }
 .cx--stay .cx__mark { background: transparent; border: .0625em solid #b89b5e; color: #d8c08a; border-radius: .2em; }
 .cx--stay .cx__brand { font-weight: 600; letter-spacing: .04em; }
 .cx--stay .cx__hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(37,56,46,0) 40%, #25382e 98%); }
@@ -122,7 +122,7 @@
 .cx--stay .cx__cta { background: #d8c08a; color: #25382e; border-radius: .2em; letter-spacing: .06em; }
 
 /* Salon: blush + plum, light spaced serif */
-.cx--salon { background: #fbf2ef; color: #3a1f2d; font-family: "Didot", "Bodoni 72", Georgia, "Times New Roman", serif; }
+.cx--salon { --cx-head: #f1d8d4; background: #fbf2ef; color: #3a1f2d; font-family: "Didot", "Bodoni 72", Georgia, "Times New Roman", serif; }
 .cx--salon .cx__brand { font-weight: 400; font-size: 1.1em; letter-spacing: .12em; text-transform: uppercase; }
 .cx--salon .cx__mark { background: #3a1f2d; color: #f1d8d4; border-radius: 50%; font-style: italic; }
 .cx--salon .cx__kicker { background: rgba(255,255,255,.7); color: #3a1f2d; }
@@ -131,3 +131,13 @@
 .cx--salon .cx__list li { border-bottom: .0625em solid #ecd2cc; }
 .cx--salon .cx__dock { background: linear-gradient(180deg, rgba(251,242,239,0), #fbf2ef 40%); }
 .cx--salon .cx__cta { background: #3a1f2d; color: #fbf2ef; border-radius: 99em; letter-spacing: .1em; text-transform: uppercase; font-size: .85em; }
+
+/* Plumber, guesthouse and salon: artwork lives in the right 40% of the hero, copy in the left 60%, so shapes never sit under text */
+.cx--plumb .cx__hero, .cx--stay .cx__hero, .cx--salon .cx__hero { background: var(--cx-head); }
+.cx--plumb .cx__art, .cx--stay .cx__art, .cx--salon .cx__art { left: 60%; }
+.cx--plumb .cx__copy, .cx--stay .cx__copy, .cx--salon .cx__copy { right: 40%; }
+.cx--plumb .cx__hero::after, .cx--stay .cx__hero::after { display: none; }
+.cx__kicker { white-space: nowrap; }
+.cx--salon .cx__art, .cx--stay .cx__art { -webkit-mask-image: linear-gradient(90deg, transparent, #000 28%); mask-image: linear-gradient(90deg, transparent, #000 28%); }
+.cx--salon .cx__copy { right: 42%; }
+.cx--cafe .cx__art svg { transform: translateX(-2.5%) scale(.62); }

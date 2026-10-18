@@ -70,3 +70,7 @@
 .bframe__url svg { opacity: 0.6; }
 .bframe__spacer { width: 5em; }
 .bframe__body { flex: 1; min-height: 0; position: relative; overflow: hidden; }
+
+/* Dark status bar and home indicator for screens with a light header */
+.iphone[data-tone="dark"] .iphone__status { color: #1f1712; }
+.iphone[data-tone="dark"] .iphone__home { background: rgba(20,14,10,.85); box-shadow: none; }
