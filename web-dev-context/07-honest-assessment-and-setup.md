@@ -38,7 +38,7 @@ Connect this repo to **Vercel** (free). Every push then gets its own link you op
 - The repo's default branch is called `claude/brandmasters-site-1`. Renaming it to `main` (GitHub → Settings → Branches) will make things less confusing.
 
 ## The build plan (one stage at a time, you approve each on your phone)
-1. **Design system and skeleton.** Next.js site in `site/`, palette, fonts, spacing, the reusable iPhone and laptop components, Lenis + GSAP set up, deployed to Vercel. You approve the look from a single sample screen.
+1. **Design system and skeleton.** *Built 18 Oct 2026, waiting on Evan's look approval (code in `site/`, preview via `npm run preview:single`, published as a private claude.ai artifact).* Next.js site in `site/`, palette, fonts, spacing, the reusable iPhone and laptop components, Lenis + GSAP set up, deployed to Vercel. You approve the look from a single sample screen.
 2. **Hero.**
 3. **Showcase** (the scroll piece that plays like a video): one business, weak site to great site, on the phone and laptop, smooth and reversible. Built from Container Scroll + Sticky Scroll Reveal ideas. This gets the most polish time.
 4. **The rest** (can run in parallel): how it works, proof (TappedFlow), packages, FAQ, contact, footer.
