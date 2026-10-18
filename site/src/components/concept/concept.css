@@ -21,9 +21,10 @@
   80%, 100% { transform: translate3d(0,0,0); }
 }
 @media (prefers-reduced-motion: reduce) { .csm__scroll { animation: none; will-change: auto; } }
+.csm--still .csm__scroll { animation: none; will-change: auto; }
 
 .csm__hero { position: relative; height: 40.5em; }
-.csm__hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 34% 40%; }
+.csm__hero-img { position: absolute; inset: 0; background-size: cover; background-position: 34% 40%; }
 .csm__hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,25,28,.35) 0%, rgba(20,25,28,0) 22%, rgba(20,25,28,.55) 52%, #14191c 96%); }
 .csm__hero-copy { position: absolute; left: 1.25em; right: 1.25em; bottom: 2.4em; display: flex; flex-direction: column; align-items: flex-start; gap: 0.9em; }
 .csm__hero-copy h3 { font-size: 2.6em; line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; margin: 0.15em 0 0; color: #f7f1e6; }
@@ -38,7 +39,7 @@
 .csm__services span { display: block; font-size: 0.8125em; color: #8e9ba0; margin-top: 0.15em; line-height: 1.35; }
 .csm__services em { font-style: normal; font-family: var(--font-display); font-weight: 600; font-size: 1.2em; color: #e2b872; }
 .csm__photo { padding: 0 1.25em 1.5em; }
-.csm__photo img { width: 100%; height: 13em; object-fit: cover; border-radius: 1em; display: block; }
+.csm__photo .ph { width: 100%; height: 13em; background-size: cover; background-position: center; border-radius: 1em; }
 .csm__visit { padding: 0 1.25em 2em; }
 .csm__visit h4 { font-family: var(--font-display); font-size: 1.35em; margin: 0 0 0.4em; color: #f7f1e6; font-weight: 600; }
 .csm__visit p { margin: 0.2em 0; color: #aab4b8; font-size: 0.95em; }
@@ -62,7 +63,7 @@
 .csd__cta { display: flex; gap: 0.8em; }
 .csd__cta .csd__book, .csd__cta .csd__ghost { height: 3.3em; padding: 0 2em; font-size: 1.0625em; }
 .csd__photo { position: relative; border-radius: 1.6em 1.6em 0 0; overflow: hidden; }
-.csd__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.csd__photo .ph { position: absolute; inset: 0; background-size: cover; background-position: 60% 50%; }
 .csd__chip { position: absolute; left: 1.5em; bottom: 1.6em; padding: 0.9em 1.3em; border-radius: 1em; background: rgba(20,25,28,.82); border: 0.0625em solid rgba(243,235,221,.16); display: flex; flex-direction: column; gap: 0.1em; }
 .csd__chip small { font-size: 0.8125em; color: #9aa6ab; }
 .csd__chip strong { font-family: var(--font-display); font-size: 1.3em; color: #f7f1e6; font-weight: 600; }

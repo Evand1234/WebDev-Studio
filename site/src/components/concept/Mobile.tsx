@@ -3,9 +3,9 @@ import { ConceptLogo } from "./Logo";
 import "./concept.css";
 
 /** The concept client site, designed for a 390px phone screen. Written in em (16px = 1em at 390 wide). */
-export function ConceptMobile() {
+export function ConceptMobile({ still = false }: { still?: boolean }) {
   return (
-    <div className="csm">
+    <div className={still ? "csm csm--still" : "csm"}>
       <header className="csm__header">
         <ConceptLogo />
         <span className="csm__call" aria-hidden="true">
@@ -15,7 +15,7 @@ export function ConceptMobile() {
 
       <div className="csm__scroll">
         <section className="csm__hero">
-          <img src="/img/barber-cut.webp" width={1280} height={853} alt="" className="csm__hero-img" />
+          <div className="csm__hero-img ph ph--cut" />
           <div className="csm__hero-scrim" />
           <div className="csm__hero-copy">
             <span className="cs-rating"><b>★</b> {concept.rating} <i>·</i> {concept.reviews} Google reviews</span>
@@ -38,7 +38,7 @@ export function ConceptMobile() {
         </section>
 
         <section className="csm__photo">
-          <img src="/img/barber-shop-wide.webp" width={1280} height={853} alt="" />
+          <div className="ph ph--wide" />
         </section>
 
         <section className="csm__visit">

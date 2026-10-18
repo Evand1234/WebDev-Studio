@@ -40,3 +40,49 @@ Give Evan **one screen he can open on his iPhone and judge the look by**: the he
 - Screenshots at 375 px and 1440 px look premium and clean, nothing overlaps or is cut off, no horizontal scroll.
 - The phone meets the phone standard.
 - Zero console errors; reduced-motion respected.
+
+---
+
+# Stages 2 and 3: hero polish + the showcase
+
+Planned 18 Oct 2026 on Opus 5.5. Evan said "continue" after the stage 1 preview, so the stage 1 look stands. The hero already exists, so stage 2 is a short polish and the work goes into the showcase (stage 3), the heart of the site.
+
+## Stage 2: hero polish (small)
+- Desktop only (fine pointer): the device group tilts very slightly toward the cursor (max ~3°, lerped, transform only). Off on touch and reduced motion.
+- The sub-line names who we build for with one rotating word, e.g. "We build websites for barbers / plumbers / guesthouses / restaurants." (Motion, gentle vertical roll, no layout shift: reserve the width of the longest word.)
+- Fix the anchor offset: "See how it works" should land with the section heading just under the nav.
+- Nav anchors: Showcase, How it works, Contact.
+
+## Stage 3: the showcase ("plays like a video, never feels like one")
+One business's story, told on a realistic phone as you scroll. A dark band (`--night`) so it reads as its own moment, joining the light page with a soft gradient (no hard edge). Pinned with GSAP ScrollTrigger, scrubbed with smoothing (`scrub: ~0.8`), fully reversible, transform/opacity only. Five beats, each readable in a second or two:
+
+1. **"Found on Google. Then this loads."** The phone shows Marlow Street's *old* site: realistic and ordinary, the kind small businesses actually have (centred text in a dated font, a cluttered banner, small grey links, a stock-photo slider, a "Subscribe!" pop-up). Build it as real DOM like the new site, not a picture.
+2. **"Where's the number?"** A soft touch-dot (thumb) wanders and scrolls the old site; a cookie bar slides up; a small chip in the corner counts up (0:03 → 1:47, illustrative). The phone number is buried in the footer in tiny text.
+3. **"We keep what works."** The old site dims; three neat annotation tags draw on: "Keep: 4.9 on Google", "Keep: your photos", "Fix: number hidden". This is the "we learn from your site" message.
+4. **"And rebuild the rest."** The new Marlow Street site sweeps up over the old one (transform-based wipe: an overflow-hidden wrapper translating up with its content counter-translated, no clip-path animation).
+5. **"One tap. Booked."** The touch-dot taps "Book a chair"; a calm confirmation sheet rises ("Saturday 10:30 · Classic cut · Confirmed"); the chip now reads "0:02". End line: "That's what we build."
+
+Layout: desktop, phone pinned on the right half, beat text on the left changing per beat (crossfade + 12 px rise, image first, text ~150 ms after). Phone ~ 70vh tall. Mobile (375 px): phone pinned centred at ~62svh, beat text in a short caption above it on a scrim; never overlapping the phone screen. Progress: a thin 5-segment indicator.
+
+Rules: one GSAP timeline per breakpoint (`gsap.matchMedia`), pin spacing true, `anticipatePin: 1`, images preloaded, nothing animates width/height/top/left/filter. Reduced motion: the five beats as static stacked cards, each with its phone state.
+
+## Done when
+- Screenshots at 375 and 1440 at every beat and 3 frames inside each transition; nothing overlaps or is cut off.
+- 4x CPU-throttled scroll through the showcase: report median/p95 frame time; no frame over 50 ms.
+- Zero console errors, no horizontal scroll, single-file preview still renders offline.
+
+---
+
+# Status after stage 4 (18 Oct 2026)
+
+Done: stage 1 skeleton and hero; stage 2 hero polish (rotating word, tilt, anchors); stage 3 pinned showcase; stage 4 integration (Work, How it works, Packages, FAQ, footer contact, brand mark, icons, OG image, manifest, JSON-LD, dark-glass nav, mobile menu sheet). Page order: Nav, Hero, Showcase, Work, HowItWorks, Packages, Faq, Footer.
+
+QA at 360/375/390/768/1440: no horizontal scroll, zero console errors, reduced motion renders static cards, tsc and build clean, single-file preview works offline (about 1.5 MB). Lighthouse mobile: accessibility, best practices, SEO 100; CLS 0; TBT about 140 ms; performance 73-74 (simulated LCP about 7 s).
+
+## Left to do
+- LCP: Lighthouse reports the nav logo text with a long render delay (font swap plus hydration on a throttled CPU). Try font preload or `display: optional`, and less hydration work.
+- Real TappedFlow screenshot (the Work phone for it is a placeholder concept).
+- Branded email address, domain and hosting (Vercel), replace the preview link.
+- Test on a real iPhone and a mid-range Android.
+- Real client work and testimonials once they exist (nothing is invented today).
+- Keep the first Work phone mounts (idle, about 5 s after load) in mind when measuring frame timing.

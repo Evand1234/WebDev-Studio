@@ -29,7 +29,7 @@ export function ConceptDesktop() {
           <span className="cs-open"><i /> Open today, 8:00 to 18:00</span>
         </div>
         <div className="csd__photo">
-          <img src="/img/barber-floor.webp" width={1280} height={853} alt="" />
+          <div className="ph ph--floor" />
           <div className="csd__chip">
             <small>Next free chair</small>
             <strong>Today, 14:30</strong>

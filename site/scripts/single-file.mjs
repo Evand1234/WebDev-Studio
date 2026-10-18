@@ -46,6 +46,13 @@ let content = headInner + bodyInner;
 
 // 1. drop preloads and prefetch hints (everything is inline)
 content = content.replace(/<link[^>]+rel="(?:preload|prefetch|modulepreload)"[^>]*\/?>/gi, "");
+// 1b. manifest and touch icons are not needed in a single file; the favicon is inlined
+content = content.replace(/<link[^>]+rel="(?:manifest|apple-touch-icon)"[^>]*\/?>/gi, "");
+content = content.replace(/<link[^>]+rel="icon"[^>]*\/?>/gi, (tag) => {
+  const href = tag.match(/href="([^"]+)"/)?.[1];
+  if (!href || !isLocal(href) || !/\.svg$/.test(href)) return "";
+  return `<link rel="icon" type="image/svg+xml" href="${dataUri(href)}">`;
+});
 // 2. stylesheets
 content = content.replace(/<link[^>]+rel="stylesheet"[^>]*>/gi, (tag) => {
   const href = tag.match(/href="([^"]+)"/)[1];

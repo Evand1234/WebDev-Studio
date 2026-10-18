@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Onest } from "next/font/google";
+import ReactDOM from "react-dom";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 
@@ -20,7 +21,17 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/" },
-  openGraph: { title, description, url: "/", siteName: "BrandMasters", locale: "en_ZA", type: "website" },
+  applicationName: "BrandMasters",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  openGraph: {
+    title, description, url: "/", siteName: "BrandMasters", locale: "en_ZA", type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "BrandMasters. They see your site first." }],
+  },
+  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   robots: { index: true, follow: true },
 };
 
@@ -42,6 +53,9 @@ const jsonLd = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // The hero devices show these photos; start fetching them before the CSS is parsed.
+  ReactDOM.preload("/img/barber-cut-800.webp", { as: "image" });
+  ReactDOM.preload("/img/barber-floor-800.webp", { as: "image" });
   return (
     <html lang="en-ZA" className={`${bricolage.variable} ${onest.variable}`}>
       <body>

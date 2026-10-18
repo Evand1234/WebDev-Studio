@@ -21,7 +21,7 @@ export function SmoothScroll() {
       duration: 1.15,
       easing: (t) => 1 - Math.pow(1 - t, 4),
       smoothWheel: true,
-      anchors: { offset: -84 },
+      anchors: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
