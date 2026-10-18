@@ -37,14 +37,13 @@ Connect this repo to **Vercel** (free). Every push then gets its own link you op
 - This repo is **public**. It holds business notes and the email in the old site code. Make it private (GitHub → Settings → Danger zone → Change visibility). Vercel works fine with private repos.
 - The repo's default branch is called `claude/brandmasters-site-1`. Renaming it to `main` (GitHub → Settings → Branches) will make things less confusing.
 
-## The build plan (one stage at a time, you approve each on your phone)
-1. **Design system and skeleton.** *Built 18 Oct 2026, waiting on Evan's look approval (code in `site/`, preview via `npm run preview:single`, published as a private claude.ai artifact).* Next.js site in `site/`, palette, fonts, spacing, the reusable iPhone and laptop components, Lenis + GSAP set up, deployed to Vercel. You approve the look from a single sample screen.
-2. **Hero.**
-3. **Showcase** (the scroll piece that plays like a video): one business, weak site to great site, on the phone and laptop, smooth and reversible. Built from Container Scroll + Sticky Scroll Reveal ideas. This gets the most polish time.
-4. **The rest** (can run in parallel): how it works, proof (TappedFlow), packages, FAQ, contact, footer.
-5. **Polish and launch**: smoothness check with CPU throttling, Lighthouse, SEO, your real-phone check, then the domain.
+## The build plan (firstcheck rules 1, 3, 4, 5)
+0. **Questions and prompts first.** Ask Evan what you need to know, say what you can't access, and send any image or video prompts.
+1. **Components board.** Candidates for each part of the site, from references you've actually looked at, with a pick and why. Evan chooses.
+2. **One demo.** One good demo of the whole page from the chosen components, which is the draft of the site. Evan approves it on his phone.
+3. **The site**, built from the approved demo.
 
-Each stage: plan in plan mode (Opus 5.5) → you see the plan and the 21st.dev links it's using → build (Sonnet 5.5) → screenshots at 375 and 1440 px → preview link → your reaction → next stage.
+The full site built on 18 Oct is parked in `archive/v3-cloud-site/` (Evan: bland, and it skipped the steps). Its plumbing (device components, single-file preview script, pin technique) can be reused; its look can't.
 
 ## The prompt for a build session (keep it this short)
-> Read `firstcheck.md`, then `web-dev-context/`. Build stage N from `07-honest-assessment-and-setup.md`. Plan first and show me the plan with the references you picked. Be creative inside the design direction. Check it at 375 px and 1440 px and give me the preview link.
+> Read `firstcheck.md`, then `web-dev-context/`. Ask me what you need to know first, and send any image prompts straight away. Then do the current step from `07-honest-assessment-and-setup.md` and stop when it's done. Plan first and show me the plan with the references you picked. Be creative inside the design direction. Check it at 375 px and 1440 px and give me the preview link.

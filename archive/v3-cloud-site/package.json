@@ -1,0 +1,27 @@
+{
+  "name": "brandmasters-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx serve out",
+    "preview:single": "BM_SINGLE=1 next build && node scripts/single-file.mjs"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.27",
+    "motion": "^14.3.0",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "5.9"
+  }
+}
