@@ -1,0 +1,10 @@
+import {createRequire} from 'module';const {chromium}=createRequire('/opt/node-tools/')('playwright');
+import path from 'path';import {fileURLToPath} from 'url';import {execSync} from 'child_process';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const b=await chromium.launch();const pg=await b.newPage({viewport:{width:1200,height:630}});
+await pg.goto('file://'+root+'/tools/og.html');await pg.evaluate(()=>document.fonts.ready);await pg.waitForTimeout(300);
+await pg.screenshot({path:'/tmp/og.png'});execSync(`convert /tmp/og.png -quality 82 ${root}/assets/img/og.jpg`);
+import {readFileSync} from 'fs';const require_svg=readFileSync(root+'/assets/img/favicon.svg','utf8').replace('<svg ','<svg width="180" height="180" ');
+const p2=await b.newPage({viewport:{width:180,height:180}});
+await p2.goto('about:blank');await p2.setContent('<body style="margin:0">'+require_svg);await p2.waitForTimeout(200);
+await p2.screenshot({path:root+'/assets/img/apple-touch-icon.png'});await b.close();

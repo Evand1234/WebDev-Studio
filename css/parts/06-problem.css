@@ -1,6 +1,6 @@
 /* SHOWCASE: the frustration scene (#problem) */
 .phone--fit{--pw:inherit}
-.pr{height:900vh;height:900svh}
+.pr{height:820vh;height:820svh}
 .pr .stage{background:radial-gradient(90% 70% at 50% 40%,#10141a,#040507 70%)}
 .pr__hud{position:absolute;z-index:6;top:calc(var(--nav-h) + .5rem);left:0;right:0;display:flex;justify-content:center;gap:1.4rem;align-items:center}
 .pr__hud small{display:block;font:700 .62rem/1 var(--f-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
@@ -42,12 +42,10 @@
 @keyframes pr-n-cta{0%,89%{opacity:0;transform:scale(.8)}92%{opacity:1;transform:scale(1.05)}93%,100%{opacity:1;transform:scale(1)}}
 .pr__band{position:absolute;left:0;width:360px;height:auto;top:660px}.pr__band+.pr__band{top:838px}
 /* crumple */
-.pr__sheet{position:absolute;z-index:4;left:calc(var(--pw)*.037px);right:calc(var(--pw)*.037px);top:calc(var(--pw)*.037px);bottom:calc(var(--pw)*.037px);perspective:700px;opacity:0;pointer-events:none;animation-name:pr-sheet}
+.pr__sheet{position:absolute;z-index:4;left:calc(var(--pw)*.037px);right:calc(var(--pw)*.037px);top:calc(var(--pw)*.037px);bottom:calc(var(--pw)*.037px);opacity:0;pointer-events:none;animation-name:pr-sheet}
 @keyframes pr-sheet{0%,52.4%{opacity:0;transform:none}52.5%{opacity:1;transform:scale(1)}55%{transform:scale(1.04) rotate(-1.5deg)}57%{transform:scale(1.04) rotate(-1.5deg)}64%{opacity:1;transform:scale(1) rotate(4deg) translateY(0)}70%{opacity:1;transform:scale(1.25) rotate(20deg) translateY(calc(var(--pw)*.78px))}73.5%{opacity:1;transform:scale(1.05) rotate(40deg) translateY(calc(var(--pw)*.98px))}74%,100%{opacity:0;transform:scale(1) translateY(calc(var(--pw)*.98px))}}
-.pr__shard{position:absolute;width:20.4%;height:14.6%;background-image:url(../assets/screens/lodge-bad-end.webp);background-size:490% 685%;animation-name:pr-shard;transform-style:preserve-3d;backface-visibility:visible}
-.pr__shard::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--ga,120deg),rgba(255,255,255,.55),rgba(0,0,0,.65));opacity:0;animation:pr-shade 1s linear paused both;animation-delay:calc(var(--p,0)*-1s)}
-@keyframes pr-shade{0%,55%{opacity:0}64%,100%{opacity:.85}}
-@keyframes pr-shard{0%,56%{transform:none}60%{transform:translate(calc(var(--dx)*.4),calc(var(--dy)*.4)) rotate(calc(var(--r)*.35)) rotateX(var(--rx)) scale(.86)}64%,100%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) rotateX(calc(var(--rx)*1.6)) scale(.72)}}
+.pr__shard{position:absolute;width:25.4%;height:16.9%;background-image:url(../assets/screens/lodge-bad-end.webp);background-size:394% 592%;animation-name:pr-shard;box-shadow:0 0 0 1px rgba(0,0,0,.4),inset 0 0 12px rgba(0,0,0,.25)}
+@keyframes pr-shard{0%,56%{transform:none}60%{transform:translate(calc(var(--dx)*.4),calc(var(--dy)*.4)) rotate(calc(var(--r)*.35)) scale(.86)}64%,100%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(.72)}}
 /* box */
 .pr__boxback,.pr__boxfront{position:absolute;left:50%;bottom:calc(var(--pw)*-.1px);width:calc(var(--pw)*.9px);margin-left:calc(var(--pw)*-.45px);pointer-events:none;opacity:0;animation-name:pr-box;animation-duration:1s;animation-timing-function:linear;animation-fill-mode:both;animation-play-state:paused;animation-delay:calc(var(--p,0)*-1s)}
 .pr__boxback{z-index:2}.pr__boxfront{z-index:6}

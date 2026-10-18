@@ -27,6 +27,11 @@ addEventListener('load',measure);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
 measure();
 
+/* adaptive quality: if scrolling frames run long on this device, switch to the lighter look */
+(()=>{let last=0,slow=0,n=0,on=false;
+  const watch=t=>{if(!on)return;if(last){const d=t-last;if(d<120){n++;if(d>34)slow++;if(n===50){if(slow>26)document.documentElement.classList.add('lite');n=slow=0}}}last=t;requestAnimationFrame(watch)};
+  let t0;addEventListener('scroll',()=>{if(!on){on=true;last=0;requestAnimationFrame(watch)}clearTimeout(t0);t0=setTimeout(()=>{on=false;last=0;n=slow=0},400)},{passive:true})})();
+
 /* simple reveal for utility sections */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px'});
 document.querySelectorAll('[data-reveal]').forEach(n=>io.observe(n));

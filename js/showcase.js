@@ -8,17 +8,15 @@ if(fits.length){new ResizeObserver(fit).observe(document.documentElement);fit()}
 /* Crumple shards for the old-site sheet: 5 x 7 pieces, deterministic jitter. */
 const sheet=document.querySelector('[data-shards]');
 if(sheet){
-  const C=5,R=7;let seed=11;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+  const C=4,R=6;let seed=11;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
   const f=document.createDocumentFragment();
   for(let r=0;r<R;r++)for(let c=0;c<C;c++){
     const d=document.createElement('i');d.className='pr__shard sc';
-    d.style.left=(c*20.4-0.2)+'%';d.style.top=(r*14.5-0.2)+'%';
+    d.style.left=(c*25.2-0.2)+'%';d.style.top=(r*16.7-0.2)+'%';
     d.style.backgroundPosition=(c/(C-1)*100)+'% '+(r/(R-1)*100)+'%';
-    d.style.setProperty('--dx',((2-c)*86+(rnd()-.5)*44)+'%');
-    d.style.setProperty('--dy',((3-r)*86+(rnd()-.5)*44)+'%');
+    d.style.setProperty('--dx',((1.5-c)*86+(rnd()-.5)*44)+'%');
+    d.style.setProperty('--dy',((2.5-r)*86+(rnd()-.5)*44)+'%');
     d.style.setProperty('--r',((rnd()-.5)*220)+'deg');
-    d.style.setProperty('--rx',((rnd()-.5)*120)+'deg');
-    d.style.setProperty('--ga',(rnd()*360)+'deg');
     f.appendChild(d)}
   sheet.appendChild(f);
 }

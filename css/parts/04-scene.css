@@ -3,7 +3,7 @@
    .win = element fades in/out between --a and --b (in --p units)   */
 .scene{--p:0;position:relative}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;contain:layout paint}
-.sc{animation-duration:1s;animation-timing-function:linear;animation-fill-mode:both;animation-play-state:paused;animation-delay:calc(var(--p,0)*-1s);will-change:transform,opacity}
+.sc{animation-duration:1s;animation-timing-function:linear;animation-fill-mode:both;animation-play-state:paused;animation-delay:calc(var(--p,0)*-1s)}
 .win{--o:clamp(0,min((var(--p) - var(--a))/.035,(var(--b) - var(--p))/.035),1);opacity:var(--o);transform:translate3d(0,calc((1 - var(--o))*22px),0)}
 .u360{position:absolute;left:0;top:0;width:360px;height:764px;transform-origin:0 0;transform:scale(calc(var(--pw)*.9255/360));overflow:hidden}
 .cap{font-family:var(--f-display);font-size:clamp(1.7rem,4.2vw + .4rem,3.3rem);line-height:1.02;color:var(--white);text-wrap:balance}

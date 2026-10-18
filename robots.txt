@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brandmasters.co.za/sitemap.xml

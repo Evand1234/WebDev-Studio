@@ -1,5 +1,5 @@
 /* START-TO-FINISH EXAMPLE (#example): weak barbershop site in, great one out */
-.ex{height:800vh;height:800svh}
+.ex{height:720vh;height:720svh}
 .ex .stage{background:radial-gradient(90% 70% at 50% 40%,#10141a,#040507 70%)}
 .ex__rail{position:absolute;z-index:6;top:calc(var(--nav-h) + .6rem);left:0;right:0;display:grid;justify-items:center;gap:.5rem}
 .ex__rail .eyebrow{font-size:.64rem}
@@ -66,6 +66,6 @@
   .ex__rail{left:max(var(--gutter),calc((100% - var(--max))/2));right:auto;top:calc(50% - 15rem);justify-items:start}
   .ex__rail ol{flex-direction:column;gap:.9rem;margin-top:.6rem}
   .ex__arena{left:46%;top:var(--nav-h);bottom:1rem}
-  .ex__caps{left:max(var(--gutter),calc((100% - var(--max))/2));right:auto;width:min(30rem,40%);bottom:auto;top:calc(50% - 4rem);height:12rem}
+  .ex__caps{left:max(var(--gutter),calc((100% - var(--max))/2));right:auto;width:min(30rem,40%);bottom:auto;top:calc(50% + 3.8rem);height:11rem}
   .ex__caps .cap{text-align:left;bottom:auto;top:0;font-size:clamp(1.9rem,2.8vw,2.9rem)}
 }
