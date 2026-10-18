@@ -14,4 +14,14 @@ for(const n of ['lodge-bad','lodge-good','barber-old','barber-new']){
   const bands=await p.$$('[data-band]');
   for(const el of bands){const id=await el.getAttribute('data-band');await el.screenshot({path:`/tmp/${n}-${id}.png`});execSync(`convert /tmp/${n}-${id}.png -quality 80 ${out}/${n}-${id}.webp`);const bb=await el.boundingBox();console.log(' ',id,Math.round(bb.height))}
 }
+// end frame of the old site (scrolled to the bottom with popups) used for the crumple shards
+await p.goto('file://'+path.join(root,'tools/screens/lodge-bad.html'));
+await p.evaluate(()=>document.fonts.ready);
+await p.addStyleTag({url:'file://'+path.join(root,'css/site.css')});
+await p.addStyleTag({content:'.sc{animation:none!important;opacity:1!important;transform:none!important}'});
+await p.evaluate(()=>{const w=document.createElement('div');w.className='u360';w.style.cssText='position:fixed;left:0;top:0;transform:none;z-index:9;--p:0';
+ w.innerHTML='<div class="pr__cookie sc"><b>We use cookies!</b> Lots of cookies. <span>ACCEPT ALL</span> <u>more info</u></div><div class="pr__chat sc">Hi! Need any help?</div>';document.body.appendChild(w);window.scrollTo(0,document.documentElement.scrollHeight)});
+await p.waitForTimeout(300);
+await p.screenshot({path:'/tmp/lodge-bad-end.png'});
+execSync(`convert /tmp/lodge-bad-end.png -quality 80 ${out}/lodge-bad-end.webp`);
 await b.close();

@@ -2,7 +2,7 @@
    All motion is CSS reading --p (transform/opacity only), so it also runs backward for free. */
 const clamp=(v,a=0,b=1)=>v<a?a:v>b?b:v;
 const reduce=matchMedia('(prefers-reduced-motion:reduce)');
-const scenes=[...document.querySelectorAll('[data-scene]')].map(el=>({el,stage:el.querySelector('[data-stage]')||el,top:0,h:0,sh:0,last:-1,live:false}));
+const scenes=[...document.querySelectorAll('[data-scene]')].map(el=>({cbs:[],el,stage:el.querySelector('[data-stage]')||el,top:0,h:0,sh:0,last:-1,live:false}));
 let W=innerWidth,H=innerHeight,raf=0;
 
 function measure(){
@@ -17,7 +17,7 @@ function tick(){
     if(!s.live){s.live=true;s.el.classList.add('is-live')}
     const range=Math.max(1,s.h-s.sh);
     const p=clamp((y-s.top)/range);
-    if(Math.abs(p-s.last)>.0004||p===0||p===1){s.last=p;s.el.style.setProperty('--p',p.toFixed(4))}
+    if(Math.abs(p-s.last)>.0004||p===0||p===1){s.last=p;s.el.style.setProperty('--p',p.toFixed(4));for(const f of s.cbs)f(p)}
   }
 }
 function req(){if(!raf)raf=requestAnimationFrame(tick)}
@@ -44,4 +44,6 @@ document.addEventListener('click',e=>{
   history.replaceState(null,'','#'+id);
   const m=document.querySelector('.nav__menu[open]');if(m)m.open=false;
 });
-export{clamp,reduce};
+/** Run fn(p) whenever a scene's progress changes (for counters etc.). */
+function onScene(el,fn){const s=scenes.find(x=>x.el===el);if(s){s.cbs.push(fn);fn(Math.max(0,s.last))}}
+export{clamp,reduce,onScene};
