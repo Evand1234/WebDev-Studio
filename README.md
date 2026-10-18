@@ -1,2 +1,6 @@
-# BrandMasters website
-Static site. Open `index.html` through any web server (`python3 -m http.server`). See PLAN.md for how it is built, LICENCES.md for photo credits.
+# WebDev Studio
+
+Memory and code for BrandMasters web work.
+
+- Start here: [`firstcheck.md`](firstcheck.md), then [`web-dev-context/`](web-dev-context/README.md).
+- Old V2 site (rejected): [`archive/v2-static-site/`](archive/v2-static-site/).
