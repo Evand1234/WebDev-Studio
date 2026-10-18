@@ -24,6 +24,9 @@ Brief: a 35 KB "master brief" asking for two complete sites in one go, with a sc
 What came back: one site, not two. Plain HTML/CSS/JS with a hand-made scroll engine. Commits span about 20 minutes. Evan's verdict: **"slop"**, and **glitchy**.
 Likely causes of the glitchiness (from reading the code, not tested on a phone): no scroll smoothing; a progress value written onto whole sections every frame, which makes the browser restyle everything inside them; a "lite mode" that switches on mid-scroll and visibly pops; re-measuring the page when the iPhone address bar moves. Photos were amateur free images from Wikimedia Commons.
 
+## V3 site (18 Oct 2026, built in the cloud, PR #3, parked)
+Built a full Next.js site in `site/` in one go after Evan said "continue" and "go faster". Evan's verdict: built without permission (he wanted planning and elements first), and **"very basic, very boring, very bland"**, not premium. It also used a barber shop as the example and a cartoon "bad site", ignoring his repeated instruction about the realistic text-heavy bad site. Now firstcheck rules 2 and 3.
+
 ## Lessons (apply these)
 1. **Outcome, taste and limits beat storyboards.** The build that worked had a short brief and freedom. The ones that missed had long, prescriptive briefs that also said "be creative": Claude can't do both, so it ticks boxes.
 2. **One stage at a time, reviewed.** Asking for everything at once gets a thin pass over everything.
@@ -31,3 +34,5 @@ Likely causes of the glitchiness (from reading the code, not tested on a phone):
 4. **Evan must see it on his phone early**, via a preview link, not via a written report at the end.
 5. **Good images matter as much as code.** Generate them (Higgsfield, Google Flow) rather than settling for amateur free photos.
 6. **Standard and polished beats novel and rough** (Evan, 18 Oct).
+7. **"Go faster" never means skip a stage.** Show elements, get a pick, then demos, then the site.
+8. **Clean is not the same as premium.** A safe, tidy layout reads as bland. Premium needs a strong type moment, real depth (light, shadow, layering), confident motion and great imagery.

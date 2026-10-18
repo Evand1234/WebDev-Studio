@@ -18,3 +18,16 @@ We always think and plan with **Opus 5.5** first, then build with **Sonnet 5.5**
 - If a session can't switch models itself, say so at the start, plan anyway, and tell Evan which model should run the build.
 
 <!-- Add new rules below as 2., 3., ... Keep each rule short: the rule, then how to apply it. -->
+
+### 2. Plan and show elements first. Never build a full site without Evan's go-ahead
+Before building anything, plan it and show Evan the elements you want to use (references, sketches, your pick and why). He picks. Only then build.
+
+- "Continue" or "go faster" means faster inside the stage he approved, never permission to skip ahead.
+- If you're unsure whether he approved the next stage, ask with one short question. Don't build to find out.
+
+### 3. Order: elements, then demos, then the site
+1. **Elements:** a board of candidate elements (hero, scroll story, devices, before/after, pricing, FAQ, contact, transitions), with real references and a pick for each. Evan chooses.
+2. **Demos:** small working demos made only from the chosen elements. Evan approves each.
+3. **The site:** assembled from the approved demos.
+
+Never move to the next step until Evan has approved the current one.

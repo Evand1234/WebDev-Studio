@@ -18,6 +18,12 @@ So: **clean, premium, standard modern design**, the kind good studios and top Sa
 
 One continuous scrolling page. Evan hates the feeling of separate "pages", so no multi-page site for BrandMasters, no hard section breaks. Sections should flow into each other.
 
+## The bad site and the story (Evan, 18 Oct 2026, he has said this many times)
+- **The "before" site is a normal person's site, not a disaster.** Model it on the look of the reference venue screenshot: a big centred title in a slightly dated font and colour, then paragraph after paragraph of centred grey text that says everything at once, then a strip of nice-enough photos dumped at the bottom over a faded background photo, where they don't belong. The owner tried a little. Nothing is broken, nothing is a joke, no pop-up circus. It's just tiring and forgettable.
+- **No trades as the example.** No barbers, plumbers or similar as the demo business. Keep it a generic "online business site" look, so any owner sees their own site in it.
+- **The story is about feelings.** As you scroll, compare how a visitor feels on their site (lost, skimming, leaving) with how they feel on ours (clear, welcome, one tap to act). Told by scrolling, not a video.
+- Never use the reference venue's name, text or photos. Write our own text in the same style.
+
 ## Taste (still true)
 - Minimal text. Pictures and motion carry the message; words label what the picture already shows. Headlines 3 to 6 words.
 - Everything earns its place. No filler sections, no pointless widgets.
