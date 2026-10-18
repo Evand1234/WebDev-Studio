@@ -1,0 +1,72 @@
+/* ---------- shared ---------- */
+.scaled-screen { container-type: inline-size; width: 100%; height: 100%; position: relative; overflow: hidden; }
+.scaled-screen__inner { width: 100%; height: 100%; position: relative; line-height: 1.4; }
+
+/* ---------- iPhone 15 Pro ---------- */
+.iphone { container-type: inline-size; position: relative; width: 100%; aspect-ratio: 1 / 2.03; }
+.iphone__rim {
+  position: absolute; inset: 0; border-radius: 14.4cqw; padding: 1cqw;
+  background:
+    linear-gradient(135deg, #a9a49c 0%, #5d5a56 18%, #cfcac1 38%, #6f6c67 58%, #bdb8af 80%, #77736d 100%);
+  box-shadow:
+    0 0 0 0.25cqw rgba(0,0,0,.35),
+    inset 0 0 0 0.3cqw rgba(255,255,255,.28),
+    0 3.5cqw 6cqw -1cqw rgba(15,27,34,.35),
+    0 12cqw 22cqw -6cqw rgba(15,27,34,.45);
+}
+.iphone__bezel { width: 100%; height: 100%; background: #050607; border-radius: 13.4cqw; padding: 2.5cqw; box-shadow: inset 0 0 0 0.35cqw #1a1b1d; }
+.iphone__screen { position: relative; width: 100%; height: 100%; border-radius: 11cqw; overflow: hidden; background: #14191c; isolation: isolate; }
+.iphone__island {
+  position: absolute; z-index: 5; top: 3cqw; left: 50%; width: 28.5cqw; height: 8.4cqw; margin-left: -14.25cqw;
+  background: #000; border-radius: 99cqw; display: block;
+}
+.iphone__island i { position: absolute; right: 3.2cqw; top: 50%; width: 3.6cqw; height: 3.6cqw; margin-top: -1.8cqw; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #26304a 0%, #0c1020 55%, #05060a 100%); box-shadow: inset 0 0 0 0.3cqw rgba(255,255,255,.06); }
+.iphone__status {
+  position: absolute; z-index: 4; top: 0; left: 0; right: 0; height: 14.5cqw; padding: 4.4cqw 8.6cqw 0 9.4cqw;
+  display: flex; align-items: flex-start; justify-content: space-between; color: #fff;
+  font-size: 4.1cqw; font-weight: 600; letter-spacing: -0.01em; line-height: 1;
+}
+.iphone__time { display: block; padding-top: 0.9cqw; }
+.iphone__icons { display: flex; align-items: center; gap: 1.1cqw; padding-top: 1.1cqw; }
+.iphone__icons svg { display: block; }
+.iphone__home { position: absolute; z-index: 5; bottom: 1.8cqw; left: 50%; width: 33cqw; height: 1.25cqw; margin-left: -16.5cqw; border-radius: 9cqw; background: rgba(255,255,255,.92); box-shadow: 0 0 0 0.2cqw rgba(0,0,0,.15); }
+.iphone__glare { position: absolute; inset: 0; z-index: 6; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,0) 34%); }
+.iphone__btn { position: absolute; width: 1cqw; border-radius: 0.5cqw; background: linear-gradient(90deg, #5d5a56, #bdb8af 55%, #7d7973); }
+.iphone__btn--action { left: -0.65cqw; top: 15.5%; height: 3.2%; }
+.iphone__btn--vol-up { left: -0.65cqw; top: 22.2%; height: 6.2%; }
+.iphone__btn--vol-down { left: -0.65cqw; top: 30%; height: 6.2%; }
+.iphone__btn--power { right: -0.65cqw; left: auto; top: 26%; height: 10%; background: linear-gradient(270deg, #5d5a56, #bdb8af 55%, #7d7973); }
+
+/* ---------- Laptop ---------- */
+.laptop { container-type: inline-size; position: relative; width: 100%; }
+.laptop__lid {
+  position: relative; border-radius: 2.6cqw 2.6cqw 0.6cqw 0.6cqw; padding: 0.35cqw 0.35cqw 0;
+  background: linear-gradient(180deg, #d3d6d9, #9ca1a5);
+  box-shadow: inset 0 0 0 0.12cqw rgba(255,255,255,.55);
+}
+.laptop__bezel { position: relative; background: #050607; border-radius: 2.3cqw 2.3cqw 0.4cqw 0.4cqw; padding: 1.9cqw 1.55cqw 2.2cqw; }
+.laptop__camera { position: absolute; top: 0.72cqw; left: 50%; width: 0.65cqw; height: 0.65cqw; margin-left: -0.325cqw; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #26304a, #0a0d18 70%); }
+.laptop__screen { position: relative; aspect-ratio: 16 / 10; border-radius: 0.5cqw; overflow: hidden; background: #fff; }
+.laptop__glare { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(118deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 32%); }
+.laptop__base {
+  position: relative; width: 104%; margin-left: -2%; height: 1.9cqw;
+  border-radius: 0 0 2.4cqw 2.4cqw / 0 0 1.9cqw 1.9cqw;
+  background: linear-gradient(180deg, #e9ebed 0%, #c4c8cb 55%, #9da2a6 100%);
+  box-shadow: inset 0 0.12cqw 0 rgba(255,255,255,.8), 0 2.2cqw 3.6cqw -1.2cqw rgba(15,27,34,.4), 0 6cqw 8cqw -3cqw rgba(15,27,34,.25);
+}
+.laptop__lip { position: absolute; top: 0; left: 50%; width: 15cqw; height: 0.75cqw; margin-left: -7.5cqw; border-radius: 0 0 1cqw 1cqw; background: linear-gradient(180deg, #a8adb1, #cfd3d6); }
+
+/* ---------- Browser frame (em = 1/16 logical px at 1280 wide) ---------- */
+.bframe { display: flex; flex-direction: column; width: 100%; height: 100%; background: #fff; }
+.bframe__bar { flex: none; height: 2.75em; display: flex; align-items: center; padding: 0 1em; gap: 1em; background: linear-gradient(180deg, #f4f5f6, #e9ebed); border-bottom: 0.0625em solid #d4d8db; }
+.bframe__dots { display: flex; gap: 0.5em; width: 5em; }
+.bframe__dots i { width: 0.75em; height: 0.75em; border-radius: 50%; background: #ff5f57; display: block; }
+.bframe__dots i:nth-child(2) { background: #febc2e; }
+.bframe__dots i:nth-child(3) { background: #28c840; }
+.bframe__url { flex: 0 1 40%; margin: 0 auto; height: 1.7em; display: flex; align-items: center; justify-content: center; gap: 0.5em;
+  background: #dde1e4; border-radius: 0.5em; font-size: 0.8em; color: #4a5a63; font-weight: 500; letter-spacing: 0; white-space: nowrap; }
+.bframe__url svg { opacity: 0.6; }
+.bframe__spacer { width: 5em; }
+.bframe__body { flex: 1; min-height: 0; position: relative; overflow: hidden; }
