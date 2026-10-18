@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BrandMasters Story Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500&family=Geist+Mono&family=Roboto:wght@300;400&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050505; --ink:#f5f3f0; --ink2:rgba(245,243,240,.7); --ink3:rgba(245,243,240,.4); --line:rgba(255,255,255,.1);
+  --grad:linear-gradient(100deg,#ff7a1a,#e5261a);
+  --ph:min(68svh,600px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#050505;--ink:#f5f3f0}}
+:root[data-theme="dark"]{--bg:#050505;--ink:#f5f3f0}
+@media (max-width:640px){:root{--ph:min(58svh,520px)}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 "Host Grotesk",system-ui,sans-serif;overflow-x:hidden}
+.mono{font-family:"Geist Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+
+/* nav */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 16px;border-radius:999px;background:rgba(20,20,20,.55);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);width:max-content;max-width:calc(100% - 32px)}
+.nav b{font-weight:500;letter-spacing:-.01em}
+.nav a{text-decoration:none;color:#0b0b0b;background:var(--ink);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;white-space:nowrap}
+
+/* story stage */
+.story{position:relative;height:1050svh}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.glow{position:absolute;inset:-20%;background:radial-gradient(40% 45% at 50% 55%,rgba(255,106,26,.55),rgba(229,38,26,.18) 55%,transparent 75%);pointer-events:none}
+.herotext{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 16px;z-index:6;pointer-events:none}
+.herotext h1{font-weight:400;font-size:clamp(48px,10vw,128px);line-height:.92;letter-spacing:-.045em}
+.herotext h1 span{display:block;overflow:hidden;padding-bottom:.06em}
+.herotext h1 span i{display:block;font-style:normal;transform:translateY(110%);animation:rise 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+.herotext h1 span:nth-child(2) i{animation-delay:.12s}
+.herotext p{margin-top:20px;color:var(--ink2);max-width:420px;opacity:0;animation:fade 1s .5s forwards}
+.herotext .hint{margin-top:34px;color:var(--ink3);opacity:0;animation:fade 1s .9s forwards}
+@keyframes rise{to{transform:none}}
+@keyframes fade{to{opacity:1}}
+
+.phone{position:relative;z-index:3;height:var(--ph);aspect-ratio:1/2.03;border-radius:calc(var(--ph)*.085);will-change:transform}
+.bezel{position:absolute;inset:0;border-radius:inherit;background:linear-gradient(145deg,#5b5d63,#1d1e22 30%,#3b3c41 60%,#121316);box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08) inset}
+.screen{position:absolute;inset:calc(var(--ph)*.012);border-radius:calc(var(--ph)*.075);overflow:hidden;background:#000}
+.island{position:absolute;z-index:9;top:calc(var(--ph)*.022);left:50%;width:30%;height:calc(var(--ph)*.032);transform:translateX(-50%);background:#000;border-radius:99px}
+.scr{position:absolute;left:0;top:0;width:390px;height:844px;transform-origin:0 0;transform:scale(var(--s,1))}
+.layer{position:absolute;inset:0;overflow:hidden;z-index:1}
+.l-good{z-index:2}.l-glow{z-index:3}
+.l-glow{background:radial-gradient(70% 50% at 50% 60%,#ff6a1a,#c4200f 55%,#1a0703)}
+.status{position:absolute;top:0;left:0;right:0;height:50px;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:6px 34px 0;font:600 15px/1 -apple-system,system-ui,sans-serif;z-index:5}
+
+/* bad site (390 wide) */
+.l-bad{background:#fff;color:#6f6f6f;font-family:Roboto,Arial,sans-serif;font-weight:300;text-align:center}
+.badpage{position:absolute;left:0;top:0;width:390px;will-change:transform}
+.bad-hd{padding:58px 18px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee}
+.bad-hd .logo{font-family:"Dancing Script",cursive;color:#1f4f8a;font-size:24px}
+.bad-hd .ham{width:24px;height:16px;border-top:2px solid #777;border-bottom:2px solid #777;position:relative}
+.bad-hd .ham:after{content:"";position:absolute;left:0;right:0;top:5px;border-top:2px solid #777}
+.l-bad h4{font-family:Georgia,serif;font-weight:400;color:#1f4f8a;font-size:27px;line-height:1.25;padding:22px 20px 12px}
+.l-bad p{font-size:14.5px;line-height:1.6;padding:0 22px 14px}
+.bad-strip{margin-top:8px;padding:18px 14px 22px;background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)),linear-gradient(180deg,#a9cbe6,#d8e8f2 60%,#9fbf8a);display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.bad-strip div{aspect-ratio:1}
+.p1{background:linear-gradient(150deg,#e9e9e9,#9aa7b0)}.p2{background:linear-gradient(150deg,#f5f5f5,#c9d3d9)}.p3{background:linear-gradient(150deg,#e0d6c8,#8f8172)}.p4{background:linear-gradient(150deg,#d9e3ea,#6d8596)}
+.bad-foot{background:#3a3a3a;color:#bbb;font-size:12px;padding:22px 16px 40px}
+.skel{position:absolute;inset:0;background:#fff;padding:120px 24px 0;z-index:4}
+.skel i{display:block;height:12px;border-radius:6px;background:#eee;margin:0 auto 14px}
+.spin{width:34px;height:34px;border-radius:50%;border:3px solid #e6e6e6;border-top-color:#9aa;margin:60px auto 0;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.dim{position:absolute;inset:0;background:rgba(60,60,60,.45);z-index:6}
+.popup{position:absolute;z-index:7;left:28px;right:28px;top:250px;background:#fff;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.35);padding:22px 20px 18px;text-align:left}
+.popup b{display:block;font-weight:400;color:#333;font-size:17px;margin-bottom:12px}
+.popup i{display:block;height:30px;border-bottom:1px solid #ddd;margin-bottom:8px;font-style:normal;font-size:12px;color:#aaa}
+.popup u{display:block;margin-top:12px;text-decoration:none;text-align:center;background:#3a3a3a;color:#fff;font-size:13px;padding:10px}
+.popup s{position:absolute;right:14px;top:10px;text-decoration:none;color:#aaa}
+.tap{position:absolute;z-index:8;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.18);border:2px solid rgba(255,255,255,.7);right:24px;top:252px}
+.shade{position:absolute;inset:0;background:#000;z-index:8}
+
+/* good site (390 wide) */
+.l-good{background:#0b0f14;color:#fff}
+.goodpage{position:absolute;left:0;top:0;width:390px;will-change:transform}
+.g-hero{height:560px;position:relative;background:radial-gradient(60% 50% at 70% 30%,rgba(255,196,140,.55),transparent 70%),linear-gradient(170deg,#3b4f66 0%,#1c2a38 45%,#0b0f14 100%)}
+.g-hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:240px;background:linear-gradient(transparent,#0b0f14)}
+.g-nav{position:absolute;top:56px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;z-index:2;font-weight:500}
+.g-nav span:last-child{font-size:13px;border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 12px}
+.g-copy{position:absolute;left:22px;right:22px;bottom:34px;z-index:2}
+.g-copy small{display:inline-block;font-size:12px;color:#cfe3f3;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:5px 11px;margin-bottom:14px}
+.g-copy h5{font-weight:400;font-size:46px;line-height:.98;letter-spacing:-.04em}
+.g-copy p{color:#b9c6d2;font-size:15px;margin:12px 0 18px}
+.g-btn{display:flex;gap:8px}
+.g-btn span{flex:1;text-align:center;border-radius:99px;padding:13px 0;font-size:15px;font-weight:500}
+.g-btn .wa{background:#25d366;color:#05210f}
+.g-btn .call{border:1px solid rgba(255,255,255,.3)}
+.g-cards{padding:8px 16px 40px;display:grid;gap:10px}
+.g-cards div{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);border-radius:16px;padding:16px;display:flex;justify-content:space-between;align-items:center}
+.g-cards b{font-weight:500}
+.g-cards em{font-style:normal;color:#9fd3ff}
+
+/* chips + thoughts */
+.timer{position:absolute;z-index:7;top:calc(50% - var(--ph)/2 - 46px);left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;padding:7px 13px;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;white-space:nowrap}
+.timer i{width:7px;height:7px;border-radius:50%;background:#ff5b1f}
+.timer.ok i{background:#25d366}
+.th{position:absolute;z-index:7;max-width:min(250px,44vw);padding:12px 14px;border-radius:16px;background:rgba(28,28,28,.72);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 40px -20px rgba(0,0,0,.8);opacity:0;font-size:clamp(14px,1.6vw,17px);line-height:1.25}
+.th small{display:block;color:var(--ink3);margin-bottom:4px}
+.th.good{border-color:rgba(255,91,31,.5);background:rgba(40,16,8,.72)}
+.L{right:calc(50% + var(--ph)*.27)}.R{left:calc(50% + var(--ph)*.27)}
+@media(max-width:640px){.L{right:auto;left:12px}.R{left:auto;right:12px}.th{max-width:58vw;font-size:14px}}
+
+/* arch */
+.arch{position:absolute;z-index:10;left:-30%;right:-30%;top:0;height:170svh;border-radius:50% 50% 0 0/22% 22% 0 0;background:radial-gradient(60% 40% at 50% 20%,#ff8a2a,#e5261a 60%,#a5140c);transform:translateY(105svh);display:flex;justify-content:center;padding-top:30svh}
+.arch h2{font-weight:400;font-size:clamp(38px,7vw,88px);letter-spacing:-.04em;line-height:.95;text-align:center;color:#fff;padding:0 16px}
+.caption{position:absolute;z-index:7;bottom:calc(50% - var(--ph)/2 - 64px);left:0;right:0;text-align:center;color:var(--ink2);font-size:15px;opacity:0;padding:0 16px}
+
+/* row */
+.row{position:relative;height:340svh}
+.row .stage{place-items:stretch}
+.row h3{position:absolute;top:13svh;left:0;right:0;text-align:center;font-weight:400;font-size:clamp(34px,6vw,72px);letter-spacing:-.04em;line-height:1;padding:0 16px;z-index:2}
+.row h3 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.strip{position:absolute;top:calc(50% - var(--ph)*.42 + 7svh);left:0;display:flex;gap:min(5vw,56px);padding:0 8vw;will-change:transform}
+.mini{--ph2:calc(var(--ph)*.84);flex:none;width:calc(var(--ph2)/2.03);height:var(--ph2);border-radius:calc(var(--ph2)*.085);padding:calc(var(--ph2)*.012);background:linear-gradient(145deg,#5b5d63,#1d1e22 30%,#3b3c41 60%,#121316);box-shadow:0 30px 70px -30px rgba(0,0,0,.9)}
+.mini>div{position:relative;height:100%;border-radius:calc(var(--ph2)*.075);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
+.mini h6{font-weight:400;font-size:clamp(20px,2.4vw,28px);line-height:1;letter-spacing:-.03em;color:#fff;position:relative}
+.mini p{position:relative;color:rgba(255,255,255,.75);font-size:12px;margin:8px 0 12px}
+.mini span{position:relative;align-self:flex-start;font-size:12px;border-radius:99px;padding:7px 12px;background:#fff;color:#111}
+.mini>div:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.75))}
+.cafe{background:radial-gradient(50% 40% at 50% 38%,#e9c9a0,transparent 70%),linear-gradient(170deg,#6b4a33,#2a1a10)}
+.shop{background:radial-gradient(40% 30% at 50% 40%,#f3ece2,transparent 70%),linear-gradient(170deg,#c9b8a6,#6f6253)}
+.salon{background:radial-gradient(45% 35% at 50% 35%,#f6dcc9,transparent 70%),linear-gradient(170deg,#a7887a,#3f2e2a)}
+.guest{background:radial-gradient(60% 35% at 50% 30%,#ffcf8a,transparent 70%),linear-gradient(170deg,#c27a3a,#3a2412)}
+.coolco{background:radial-gradient(60% 40% at 70% 30%,rgba(255,196,140,.6),transparent 70%),linear-gradient(170deg,#3b4f66,#0b0f14)}
+
+/* end */
+.end{position:relative;padding:18svh 16px 0;overflow:hidden}
+.card{position:relative;max-width:1000px;margin:0 auto;border-radius:32px;padding:clamp(40px,8vw,90px) 24px;text-align:center;background:#0e0e0e;border:1px solid var(--line);overflow:hidden}
+.card:before{content:"";position:absolute;left:50%;top:60%;width:900px;height:600px;margin-left:-450px;background:radial-gradient(closest-side,rgba(255,91,31,.55),transparent);animation:drift 9s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(60px,-40px) scale(1.1)}}
+.card h2{position:relative;font-weight:400;font-size:clamp(44px,8vw,104px);letter-spacing:-.045em;line-height:.95}
+.card p{position:relative;color:var(--ink2);margin:18px auto 26px;max-width:380px}
+.card a{position:relative;display:inline-block;background:var(--ink);color:#0b0b0b;text-decoration:none;border-radius:99px;padding:14px 24px;font-weight:500}
+.word{font-weight:500;font-size:19.5vw;letter-spacing:-.06em;line-height:.8;text-align:center;margin-top:8svh;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap;transform:translateY(30%)}
+.note{position:relative;text-align:center;color:var(--ink3);padding:30px 16px 40px}
+
+@media (prefers-reduced-motion:reduce){.herotext h1 span i,.herotext p,.herotext .hint{animation:none;transform:none;opacity:1}.card:before{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="nav"><b>BrandMasters</b><a href="#end">WhatsApp us</a></div>
+
+<section class="story">
+  <div class="stage">
+    <div class="glow"></div>
+    <div class="herotext">
+      <h1><span><i>They see your</i></span><span><i>site first.</i></span></h1>
+      <p>We build websites that make people stay, trust you and get in touch.</p>
+      <div class="hint mono">Scroll</div>
+    </div>
+
+    <div class="timer mono"><i></i><span class="tt">Time on site 0:00</span></div>
+
+    <div class="th L" id="t1"><small class="mono">Google search</small>“Aircon's dead and it's 34°. This one looks close.”</div>
+    <div class="th R" id="t2"><small class="mono">Loading…</small>“Come on, load…”</div>
+    <div class="th L" id="t3"><small class="mono">Pop-up</small>“I don't want specials. I want my aircon fixed.”</div>
+    <div class="th R" id="t4"><small class="mono">Scrolling</small>“Do they even come to Midrand?”</div>
+    <div class="th L" id="t5"><small class="mono">Still scrolling</small>“Where's the price? Where's the number?”</div>
+    <div class="th R" id="t6"><small class="mono">Back to Google</small>“Forget it. Next one.”</div>
+    <div class="th good L" id="g1"><small class="mono">Same business, our way</small>“Oh, this looks good.”</div>
+    <div class="th good R" id="g2"><small class="mono">2 seconds in</small>“Service from R650. Today.”</div>
+    <div class="th good L" id="g3"><small class="mono">One tap</small>“Sent them a WhatsApp. Done.”</div>
+
+    <div class="phone">
+      <div class="bezel"></div>
+      <div class="screen">
+        <div class="scr">
+          <div class="layer l-bad">
+            <div class="badpage">
+              <div class="bad-hd"><span class="logo">Arctic Breeze</span><span class="ham"></span></div>
+              <h4>Arctic Breeze Air Conditioning &amp; Refrigeration</h4>
+              <p>Welcome to Arctic Breeze where we have been providing quality air conditioning solutions to homes and businesses across Gauteng for over 15 years. We are a family owned business that prides itself in excellent workmanship and customer care.</p>
+              <p>We supply, install, service and repair all major brands of split units, cassette units, ducted systems and cold rooms for residential, commercial and industrial clients.</p>
+              <p>We also offer maintenance contracts, regassing, leak detection, emergency call outs and much more.</p>
+              <p>Go to the Specials section to view our latest specials and special offers for summer 2026 and 2027.</p>
+              <p>Our friendly and professional technicians are always ready to assist you with your every need. We pride ourselves in excellent service and our attention to detail will reassure you that you are in the right place!</p>
+              <p>Contact us today for a free quote!</p>
+              <div class="bad-strip"><div class="p1"></div><div class="p2"></div><div class="p3"></div><div class="p4"></div></div>
+              <div class="bad-foot">© 2026 Arctic Breeze · Terms · Privacy</div>
+            </div>
+            <div class="skel"><i style="width:60%"></i><i style="width:80%"></i><i style="width:70%"></i><div class="spin"></div></div>
+            <div class="dim"></div>
+            <div class="popup"><s>✕</s><b>Receive Specials and Discounts?</b><i>Name *</i><i>Phone *</i><i>E-mail *</i><u>Submit</u></div>
+            <div class="tap"></div>
+            <div class="shade"></div>
+          </div>
+          <div class="layer l-good">
+            <div class="goodpage">
+              <div class="g-hero">
+                <div class="g-nav"><span>Arctic Breeze</span><span>WhatsApp</span></div>
+                <div class="g-copy"><small>★ 4.8 on Google · Joburg &amp; Pretoria</small><h5>Cool again<br>by tonight.</h5><p>Same-day aircon repairs and services, from R650.</p><div class="g-btn"><span class="wa">WhatsApp us</span><span class="call">Call</span></div></div>
+              </div>
+              <div class="g-cards"><div><b>Service</b><em>from R650</em></div><div><b>Repair</b><em>same day</em></div><div><b>New install</b><em>free quote</em></div></div>
+            </div>
+          </div>
+          <div class="layer l-glow"></div>
+          <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+        </div>
+      </div>
+      <div class="island"></div>
+    </div>
+
+    <div class="caption" id="cap">Most business sites feel like this.</div>
+
+    <div class="arch"><h2>Now picture it<br>like this.</h2></div>
+  </div>
+</section>
+
+<section class="row">
+  <div class="stage">
+    <h3>For every kind of <span>business.</span></h3>
+    <div class="strip">
+      <div class="mini"><div class="coolco"><h6>Cool again by tonight.</h6><p>Aircon repairs, Joburg</p><span>WhatsApp us</span></div></div>
+      <div class="mini"><div class="cafe"><h6>Coffee worth the detour.</h6><p>Café, Parkhurst</p><span>See the menu</span></div></div>
+      <div class="mini"><div class="shop"><h6>Made by hand, sent to you.</h6><p>Online ceramics shop</p><span>Shop now</span></div></div>
+      <div class="mini"><div class="salon"><h6>Your chair is ready.</h6><p>Hair &amp; beauty studio</p><span>Book a time</span></div></div>
+      <div class="mini"><div class="guest"><h6>Wake up to the bush.</h6><p>Guesthouse, Dinokeng</p><span>Check dates</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="end" id="end">
+  <div class="card">
+    <h2>Let's build yours.</h2>
+    <p>Tell us about your business on WhatsApp. We'll take it from there.</p>
+    <a href="https://wa.me/27810898573" target="_blank" rel="noopener">WhatsApp us</a>
+  </div>
+  <div class="word">BrandMasters</div>
+</section>
+<p class="note mono">Small demo · photos are placeholders until the real ones arrive</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ignoreMobileResize:true});
+
+  if (!reduce && window.Lenis) {
+    var lenis = new Lenis({lerp:0.09});
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t*1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  var phone = document.querySelector('.phone');
+  var root = document.documentElement;
+  function fit(){
+    var scr = document.querySelector('.screen');
+    root.style.setProperty('--s', scr.clientWidth / 390);
+  }
+  fit(); window.addEventListener('resize', fit);
+  function cover(){
+    var r = phone.getBoundingClientRect(), w = r.width / (gsap.getProperty(phone,'scale')||1), h = r.height / (gsap.getProperty(phone,'scale')||1);
+    return Math.max(innerWidth / w, innerHeight / h) * 1.15;
+  }
+
+  gsap.set('.l-good', {autoAlpha:0});
+  gsap.set(['.dim','.popup','.tap','.shade'], {autoAlpha:0});
+  gsap.set('.bezel', {opacity:0});
+  gsap.set('.th', {y:24, scale:.94});
+
+  var tt = document.querySelector('.tt'), timer = document.querySelector('.timer');
+  function fmt(s){ s = Math.max(0, Math.round(s)); return Math.floor(s/60) + ':' + ('0'+(s%60)).slice(-2); }
+
+  var tl = gsap.timeline({defaults:{ease:'power2.out'}, scrollTrigger:{trigger:'.story', start:'top top', end:'bottom bottom', scrub:0.6, invalidateOnRefresh:true,
+    onUpdate:function(self){
+      var p = self.progress*100;
+      if (p < 74) { timer.classList.remove('ok'); tt.textContent = 'Time on site ' + fmt(gsap.utils.mapRange(12, 60, 0, 112, gsap.utils.clamp(12,60,p))); }
+      else { timer.classList.add('ok'); tt.textContent = 'Time to WhatsApp ' + fmt(gsap.utils.mapRange(82, 98, 0, 8, gsap.utils.clamp(82,98,p))); }
+    }}});
+
+  // 0-10 hero shrinks into the phone
+  tl.fromTo(phone, {scale:cover}, {scale:1, duration:10, ease:'power2.inOut'}, 0)
+    .to('.herotext', {autoAlpha:0, y:-60, duration:5, ease:'power1.in'}, 0)
+    .to('.glow', {opacity:.35, duration:10}, 0)
+    .to('.bezel', {opacity:1, duration:4}, 6)
+  // 10-22 their site loads
+    .to('.l-glow', {autoAlpha:0, duration:3}, 10)
+    .to('.timer', {autoAlpha:1, duration:2}, 11)
+    .to('#t1', {autoAlpha:1, y:0, scale:1, duration:2}, 12)
+    .to('#cap', {autoAlpha:1, duration:2}, 12)
+    .to('#t2', {autoAlpha:1, y:0, scale:1, duration:2}, 15)
+    .to('.skel', {autoAlpha:0, duration:2}, 20)
+    .to('#t1', {autoAlpha:0, y:-24, duration:2}, 20)
+  // 22-34 pop-up
+    .to('.dim', {autoAlpha:1, duration:1.5}, 23)
+    .fromTo('.popup', {autoAlpha:0, y:30}, {autoAlpha:1, y:0, duration:2}, 23)
+    .to('#t2', {autoAlpha:0, y:-24, duration:2}, 24)
+    .to('#t3', {autoAlpha:1, y:0, scale:1, duration:2}, 25)
+    .to('.tap', {autoAlpha:1, duration:1}, 29)
+    .to(['.popup','.dim','.tap'], {autoAlpha:0, duration:1.5}, 31)
+  // 34-58 scrolling the wall of text
+    .to('.badpage', {y:function(){ return -(document.querySelector('.badpage').offsetHeight - 844); }, duration:22, ease:'none'}, 34)
+    .to('#t3', {autoAlpha:0, y:-24, duration:2}, 35)
+    .to('#t4', {autoAlpha:1, y:0, scale:1, duration:2}, 38)
+    .to('#t4', {autoAlpha:0, y:-24, duration:2}, 47)
+    .to('#t5', {autoAlpha:1, y:0, scale:1, duration:2}, 49)
+  // 58-64 they leave
+    .to('#t5', {autoAlpha:0, y:-24, duration:2}, 58)
+    .to('#t6', {autoAlpha:1, y:0, scale:1, duration:2}, 59)
+    .to('.shade', {autoAlpha:.65, duration:3}, 60)
+    .to(phone, {scale:.94, duration:3}, 60)
+    .to('#cap', {autoAlpha:0, duration:2}, 62)
+  // 64-80 the ember wave
+    .to('.arch', {y:'-5svh', duration:10, ease:'power2.inOut'}, 64)
+    .to(['#t6','.timer'], {autoAlpha:0, duration:2}, 66)
+    .set('.l-good', {autoAlpha:1}, 74)
+    .set(phone, {scale:1}, 74)
+    .set('.shade', {autoAlpha:0}, 74)
+    .to('.arch', {y:'-180svh', duration:8, ease:'power2.in'}, 74)
+    .to('.timer', {autoAlpha:1, duration:2}, 80)
+  // 82-100 our version
+    .to('#g1', {autoAlpha:1, y:0, scale:1, duration:2}, 82)
+    .to('#g2', {autoAlpha:1, y:0, scale:1, duration:2}, 87)
+    .to('.goodpage', {y:-150, duration:10, ease:'none'}, 86)
+    .to('#g3', {autoAlpha:1, y:0, scale:1, duration:2}, 92)
+    .to({}, {duration:4}, 96);
+
+  // the row of businesses slides sideways
+  var strip = document.querySelector('.strip');
+  gsap.to(strip, {x:function(){ return -(strip.scrollWidth - innerWidth); }, ease:'none',
+    scrollTrigger:{trigger:'.row', start:'top top', end:'bottom bottom', scrub:0.6, invalidateOnRefresh:true}});
+  gsap.from('.row h3', {autoAlpha:0, y:40, scrollTrigger:{trigger:'.row', start:'top 70%', end:'top 20%', scrub:0.6}});
+
+  // the end
+  gsap.from('.card', {y:80, autoAlpha:0, scrollTrigger:{trigger:'.end', start:'top 85%', end:'top 35%', scrub:0.6}});
+  gsap.to('.word', {y:0, scrollTrigger:{trigger:'.word', start:'top bottom', end:'bottom bottom', scrub:0.6}});
+
+  window.addEventListener('load', function(){ fit(); ScrollTrigger.refresh(); });
+})();
+</script>
+</body>
+</html>

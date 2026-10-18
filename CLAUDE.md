@@ -11,6 +11,8 @@ This repo is the permanent memory for all of Evan's web dev work. A fresh sessio
 - `web-dev-context/`: everything about the business, Evan, the design direction, the tech rules, 21st.dev references, history and lessons.
 - `archive/v2-static-site/`: the V2 site from 18 Oct 2026. Evan rejected it. Reference only, do not build on it.
 - `archive/v3-cloud-site/`: the Next.js site built in the cloud on 18 Oct 2026. Evan found it bland and it skipped the plan. Reuse its plumbing if useful, not its look.
+- `ref-study/`: screenshots and notes of Evan's taste references.
+- `plans/` and `demos/`: planning boards and small demos shown to Evan.
 - New site builds go in their own folder (for the BrandMasters site: `site/`), so context and code stay apart.
 
 ## Keeping this memory alive

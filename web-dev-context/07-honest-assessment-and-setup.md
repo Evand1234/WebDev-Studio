@@ -39,7 +39,7 @@ Connect this repo to **Vercel** (free). Every push then gets its own link you op
 
 ## The build plan (firstcheck rules 1, 3, 4, 5)
 0. **Questions and prompts first.** Ask Evan what you need to know, say what you can't access, and send any image or video prompts.
-1. **Components board.** Candidates for each part of the site, from references you've actually looked at, with a pick and why. Evan chooses.
+1. **Components board.** Candidates for each part of the site, from references you've actually looked at, with a pick and why. Evan chooses. *Ready 18 Oct, waiting on his picks: see `09-site-plan.md`.*
 2. **One demo.** One good demo of the whole page from the chosen components, which is the draft of the site. Evan approves it on his phone.
 3. **The site**, built from the approved demo.
 
