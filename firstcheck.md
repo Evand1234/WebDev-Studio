@@ -9,7 +9,14 @@ After this file, read `web-dev-context/README.md`.
 
 ## Rules
 
-### 1. Plan with Opus 5.5, execute with Sonnet 5.5
+### 1. Ask Evan questions first. Never start on assumptions
+Before starting any task, ask Evan the questions needed to understand exactly what he wants. Never start building on assumptions. Be honest about what you can and can't access.
+
+- This applies to every prompt, every time. If anything is unclear, ask before doing any work.
+- Say plainly what you can't reach (blocked sites, missing tools, no credits) and what that limits, before you start, not after.
+- Never make it sound like things are going well when they aren't.
+
+### 2. Plan with Opus 5.5, execute with Sonnet 5.5
 We always think and plan with **Opus 5.5** first, then build with **Sonnet 5.5**. No exceptions.
 
 - Planning means: reading the context, deciding what to build, choosing references, and writing the plan. That happens on Opus 5.5.
@@ -19,13 +26,13 @@ We always think and plan with **Opus 5.5** first, then build with **Sonnet 5.5**
 
 <!-- Add new rules below as 2., 3., ... Keep each rule short: the rule, then how to apply it. -->
 
-### 2. Plan and show elements first. Never build a full site without Evan's go-ahead
+### 3. Plan and show elements first. Never build a full site without Evan's go-ahead
 Before building anything, plan it and show Evan the elements you want to use (references, sketches, your pick and why). He picks. Only then build.
 
 - "Continue" or "go faster" means faster inside the stage he approved, never permission to skip ahead.
 - If you're unsure whether he approved the next stage, ask with one short question. Don't build to find out.
 
-### 3. Order: elements, then demos, then the site
+### 4. Order: elements, then demos, then the site
 1. **Elements:** a board of candidate elements (hero, scroll story, devices, before/after, pricing, FAQ, contact, transitions), with real references and a pick for each. Evan chooses.
 2. **Demos:** small working demos made only from the chosen elements. Evan approves each.
 3. **The site:** assembled from the approved demos.
