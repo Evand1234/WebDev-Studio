@@ -1,0 +1,32 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=360">
+<link rel=stylesheet href=screens.css>
+<style>
+:root{--bg:#14100f;--pink:#e8a1b0;--cream:#f6efe9}
+body{background:var(--bg);color:var(--cream)}
+.hero{height:660px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:22px}
+.hero img{position:absolute;left:0;top:0;width:100%;height:440px;object-fit:cover;object-position:50% 40%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,15,.5) 0,rgba(20,16,15,0) 18%,rgba(20,16,15,0) 40%,#14100f 66%)}
+.hero>*{position:relative;z-index:2}
+.nav{position:absolute;top:50px;left:22px;right:22px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.nav b{font:400 21px/1 "Instrument Serif",Georgia,serif;letter-spacing:.01em}.nav i{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.hero h1{font:400 50px/.95 "Instrument Serif",Georgia,serif;margin:0 0 14px}.hero h1 em{color:var(--pink);display:block}
+.hero p{margin:0 0 18px;font-size:14px;opacity:.88;line-height:1.45}
+.cta{display:flex;gap:8px}.btn{flex:1;text-align:center;padding:15px 8px;border-radius:99px;font-weight:700;font-size:14px;background:var(--pink);color:#2a0e16}.btn.o{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.rev{padding:30px 22px;background:#14100f}.stars{color:var(--pink);letter-spacing:3px;font-size:15px}.rev h2{font:400 30px/1.05 "Instrument Serif",serif;margin:8px 0 0}.rev p{font-size:13px;opacity:.7;margin:8px 0 0}
+.rooms{padding:0 22px 30px;background:#14100f}.rooms h3{font:400 28px "Instrument Serif",serif;margin:0 0 14px}
+.card{position:relative;height:170px;border-radius:18px;overflow:hidden;margin-bottom:12px}.card img{width:100%;height:100%;object-fit:cover}.card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72),transparent 60%)}
+.card span{position:absolute;left:16px;bottom:14px;z-index:2;font:400 22px "Instrument Serif",serif}.card small{position:absolute;right:16px;bottom:18px;z-index:2;font-size:12px;opacity:.9}
+.near{padding:26px 22px;background:#1d1514}.near h3{font:400 26px "Instrument Serif",serif;margin:0 0 12px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chips span{padding:8px 13px;border-radius:99px;border:1px solid rgba(255,255,255,.22);font-size:12.5px}
+.find{padding:30px 22px 60px;background:var(--bg)}.find h3{font:400 28px "Instrument Serif",serif;margin:0 0 10px}.find .row{border-top:1px solid rgba(255,255,255,.14);padding:13px 0;display:flex;justify-content:space-between;font-size:14px}
+.dock{position:sticky;bottom:0}
+</style>
+<section data-band=hero class=hero><img src=img/bokaap-pink.jpg>
+<div class=nav><b>Signal View</b><i>Guesthouse · Bo-Kaap</i></div>
+<h1>Wake up above <em>Bo-Kaap.</em></h1><p>Six quiet rooms, Table Mountain at the window, and breakfast on the terrace. Two minutes from the city.</p>
+<div class=cta><span class=btn>Call to book</span><span class="btn o">WhatsApp</span></div></section>
+<section data-band=reviews class=rev><div class=stars>★★★★★</div><h2>“Exactly as pictured.<br>Best view in the city.”</h2><p>What guests tell us, again and again.</p></section>
+<section data-band=rooms class=rooms><h3>Your room</h3>
+<div class=card><img src=img/cableway.jpg><span>Mountain Room</span><small>from R1,450</small></div>
+<div class=card><img src=img/bokaap-street.jpg><span>Terrace Suite</span><small>from R1,850</small></div></section>
+<section data-band=near class=near><h3>On your doorstep</h3><div class=chips><span>Table Mountain</span><span>Cable car</span><span>Boulders Beach</span><span>V&amp;A Waterfront</span><span>Lion’s Head</span></div></section>
+<section data-band=find class=find><h3>Find us</h3><div class=row><span>Call</span><b>021 555 0142</b></div><div class=row><span>WhatsApp</span><b>Message us</b></div><div class=row><span>Check-in</span><b>from 14:00</b></div></section>

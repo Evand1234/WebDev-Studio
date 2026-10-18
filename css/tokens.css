@@ -1,0 +1,37 @@
+/* ONE PLACE for colour, type and spacing. Every section reads from here.
+   For a new client site: change this file first. */
+@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url(../assets/fonts/is-n.woff2) format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url(../assets/fonts/is-i.woff2) format("woff2")}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:400 700;font-display:swap;src:url(../assets/fonts/manrope.woff2) format("woff2")}
+
+:root{
+  /* ink (black theme) */
+  --ink-0:#040507;--ink-1:#0a0c0f;--ink-2:#10141a;--ink-3:#181d25;
+  --line:rgba(244,247,248,.12);--line-strong:rgba(244,247,248,.24);
+  /* text */
+  --white:#f4f7f8;--text:#e6ecee;--muted:#9aa8ae;
+  /* brand */
+  --slate:#8db4c6;       /* mint-slate blue: interface */
+  --mint:#a7e2d1;        /* mint highlight */
+  --rose:#eab5bf;        /* rose quartz: the one accent */
+  --rose-deep:#c98592;
+  /* chapter worlds (hue-matched to brand) */
+  --w-mint:#0d3a38;--w-rose:#3b1e2b;--w-blue:#122642;--w-gold:#3a2f1a;
+  /* type */
+  --f-display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --f-ui:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --t-hero:clamp(2.9rem,9.2vw + .4rem,8.4rem);
+  --t-h1:clamp(2.3rem,5.6vw + .3rem,5rem);
+  --t-h2:clamp(1.9rem,3.8vw + .3rem,3.4rem);
+  --t-h3:clamp(1.25rem,1.4vw + .8rem,1.7rem);
+  --t-body:clamp(1rem,.25vw + .95rem,1.125rem);
+  --t-small:.875rem;
+  /* space */
+  --s-1:.5rem;--s-2:1rem;--s-3:1.5rem;--s-4:2.5rem;--s-5:4rem;--s-6:7rem;
+  --gutter:clamp(1.25rem,4vw,3rem);
+  --max:74rem;
+  --r-1:.6rem;--r-2:1.1rem;--r-3:1.8rem;--r-pill:99rem;
+  /* motion */
+  --ease:cubic-bezier(.2,.7,.1,1);
+  --nav-h:3.6rem;
+}

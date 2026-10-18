@@ -1,0 +1,29 @@
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto;background:var(--ink-0);color-scheme:dark}
+body{margin:0;background:var(--ink-0);color:var(--text);font:400 var(--t-body)/1.55 var(--f-ui);-webkit-font-smoothing:antialiased;overflow-x:clip;min-width:320px}
+img,svg,video{display:block;max-width:100%}
+h1,h2,h3,p,ul,ol,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:fixed;left:var(--s-2);top:-4rem;z-index:100;background:var(--white);color:#000;padding:.7rem 1rem;border-radius:var(--r-1);font-weight:700;transition:top .2s}
+.skip:focus{top:var(--s-2)}
+.wrap{width:min(100% - var(--gutter)*2,var(--max));margin-inline:auto}
+.display{font-family:var(--f-display);font-weight:400;line-height:.98;letter-spacing:-.01em;color:var(--white)}
+.display em{font-style:italic;color:var(--rose)}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--slate)}
+.lede{font-size:clamp(1.05rem,.6vw + .95rem,1.3rem);color:var(--muted);max-width:34rem}
+section{position:relative}
+.sec{padding-block:var(--s-6)}
+.sec-head{display:grid;gap:var(--s-2);margin-bottom:var(--s-5)}
+.sec-head h2{font-size:var(--t-h1)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.6rem;min-height:3.2rem;padding:.8rem 1.5rem;border-radius:var(--r-pill);border:1px solid var(--line-strong);background:rgba(255,255,255,.04);color:var(--white);font-weight:700;text-decoration:none;font-size:.98rem;transition:transform .25s var(--ease),background .25s,border-color .25s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.09)}
+.btn--wa{background:var(--rose);color:#2a0f16;border-color:var(--rose)}
+.btn--wa:hover{background:#f3c4cc}
+.btn svg{width:1.15rem;height:1.15rem;flex:none}
+.btn-row{display:flex;flex-wrap:wrap;gap:.8rem}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}

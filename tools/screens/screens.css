@@ -1,0 +1,4 @@
+*{box-sizing:border-box}html,body{margin:0}body{width:360px;font:400 15px/1.4 "Manrope",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+@font-face{font-family:"Instrument Serif";src:url(../../assets/fonts/is-n.woff2)}
+@font-face{font-family:"Instrument Serif";font-style:italic;src:url(../../assets/fonts/is-i.woff2)}
+@font-face{font-family:"Manrope";font-weight:400 700;src:url(../../assets/fonts/manrope.woff2)}

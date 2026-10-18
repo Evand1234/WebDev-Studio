@@ -1,0 +1,24 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=360">
+<link rel=stylesheet href=screens.css>
+<style>:root{--bg:#0b0d10;--pink:#e8b4bc;--sl:#8db4c6}body{background:var(--bg);color:#eef2f3}
+section{position:relative}
+.hero{height:640px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 50%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,13,16,.6),rgba(11,13,16,0) 28%,rgba(11,13,16,.55) 56%,#0b0d10 92%)}.hero>*{position:relative;z-index:2}
+.nav{position:absolute;top:50px;left:22px;right:22px;display:flex;justify-content:space-between;z-index:3;align-items:center}.nav b{font:400 22px "Instrument Serif",serif}.nav i{font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+h1{font:400 52px/.94 "Instrument Serif",serif;margin:0 0 12px}h1 em{color:var(--pink);display:block}
+.hero p{margin:0 0 18px;font-size:14px;opacity:.85}
+.btn{display:block;text-align:center;padding:16px;border-radius:99px;font-weight:700;background:var(--pink);color:#2a0f16}
+.rev{padding:34px 22px;background:#0b0d10}.rev .s{color:var(--pink);letter-spacing:3px}.rev h2{font:400 32px/1.05 "Instrument Serif",serif;margin:8px 0 6px}.rev p{opacity:.65;font-size:13px;margin:0}
+.rev .q{margin-top:16px;padding:14px 16px;border:1px solid rgba(255,255,255,.14);border-radius:16px;font-size:13.5px;background:rgba(255,255,255,.03)}
+.gal{padding:0 22px 34px;background:#0b0d10}.gal h3{font:400 28px "Instrument Serif",serif;margin:0 0 14px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}.g img{width:100%;height:150px;object-fit:cover;border-radius:14px}.g img:first-child{grid-column:1/3;height:190px}
+.svc{padding:6px 22px 34px;background:#0b0d10}.svc h3{font:400 28px "Instrument Serif",serif;margin:0 0 8px}.svc .r{display:flex;justify-content:space-between;padding:14px 0;border-top:1px solid rgba(255,255,255,.14);font-size:15px}.svc .r b{color:var(--sl)}
+.find{padding:30px 22px 70px;background:#10151b}.find h3{font:400 28px "Instrument Serif",serif;margin:0 0 6px}.find p{opacity:.7;font-size:13px;margin:0 0 16px}
+</style>
+<section data-band=hero class=hero><img src=img/barber-cut.jpg><div class=nav><b>Marlow Street</b><i>Barbers · Jo’burg</i></div>
+<h1>Sharp cuts. <em>Zero waiting.</em></h1><p>Fades, beards and shaves from a shop customers keep coming back to.</p><span class=btn>Book on WhatsApp</span></section>
+<section data-band=reviews class=rev><div class=s>★★★★★</div><h2>“Best fade in the city. Always on time.”</h2><p>Example review · illustrative</p><div class=q>“Spotless shop, friendly team, and they actually listen.”</div></section>
+<section data-band=gallery class=gal><h3>The shop</h3><div class=g><img src=img/barber-shop-wide.jpg><img src=img/barber-beard.jpg><img src=img/barber-focus.jpg></div></section>
+<section data-band=services class=svc><h3>Services</h3><div class=r><span>Skin fade</span><b>R150</b></div><div class=r><span>Beard trim</span><b>R80</b></div><div class=r><span>Cut &amp; beard</span><b>R210</b></div></section>
+<section data-band=find class=find><h3>Walk in or book</h3><p>Tue – Sat · 08:00 – 18:00</p><span class=btn>Book on WhatsApp</span></section>

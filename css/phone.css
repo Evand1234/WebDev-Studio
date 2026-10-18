@@ -1,0 +1,29 @@
+/* iPhone 15 Pro style frame, ~1:2.03. Size with --pw (unitless px of frame width).
+   Screens are pre-rendered real site designs (assets/screens/*.webp, built from tools/screens/*.html). */
+.phone{--pw:260;position:relative;width:calc(var(--pw)*1px);aspect-ratio:1/2.03;border-radius:calc(var(--pw)*.158px);
+  background:linear-gradient(145deg,#9a9da0 0%,#4a4c4f 22%,#b3b6b9 48%,#3d3f42 74%,#8e9194 100%);
+  padding:calc(var(--pw)*.011px);flex:none;
+  box-shadow:0 0 0 1px rgba(0,0,0,.6),0 calc(var(--pw)*.12px) calc(var(--pw)*.28px) rgba(0,0,0,.65),0 0 calc(var(--pw)*.35px) var(--glow,rgba(167,226,209,.10));
+  transform-style:flat}
+.phone::before,.phone::after,.phone__btn{content:"";position:absolute;width:calc(var(--pw)*.011px);background:linear-gradient(90deg,#55585b,#a2a5a8,#55585b);border-radius:2px}
+.phone::before{left:calc(var(--pw)*-.008px);top:15%;height:3.4%}              /* action */
+.phone::after{right:calc(var(--pw)*-.008px);top:27%;height:9%}                  /* power */
+.phone__btn{left:calc(var(--pw)*-.008px);height:6.2%}
+.phone__btn--u{top:22%}.phone__btn--d{top:30%}
+.phone__bezel{position:relative;height:100%;border-radius:calc(var(--pw)*.148px);background:#000;padding:calc(var(--pw)*.026px);overflow:hidden}
+.phone__screen{position:relative;height:100%;border-radius:calc(var(--pw)*.124px);overflow:hidden;background:#0a0c0f;isolation:isolate}
+.phone__screen>img.shot{position:absolute;left:0;top:0;width:100%;height:auto;will-change:transform;transform:translate3d(0,calc(var(--sy,0)*-1%),0);backface-visibility:hidden}
+.phone__screen>img.shot.fill{height:100%;object-fit:cover}
+.phone__island{position:absolute;z-index:5;left:50%;top:2.1%;width:30%;height:3.3%;transform:translateX(-50%);background:#000;border-radius:99px}
+.phone__status{position:absolute;z-index:4;left:0;right:0;top:0;height:6.4%;display:flex;justify-content:space-between;align-items:center;padding:0 9%;font:700 calc(var(--pw)*.043px)/1 var(--f-ui);color:#fff;mix-blend-mode:difference;pointer-events:none}
+.phone__status i{display:block;width:calc(var(--pw)*.09px);height:calc(var(--pw)*.042px);border:1.5px solid currentColor;border-radius:3px;position:relative;opacity:.9}
+.phone__status i::after{content:"";position:absolute;inset:2px;background:currentColor;border-radius:1px;width:70%}
+.phone__home{position:absolute;z-index:5;left:50%;bottom:1.4%;width:34%;height:.55%;min-height:3px;transform:translateX(-50%);background:rgba(255,255,255,.85);border-radius:9px;mix-blend-mode:difference}
+.phone__glass{position:absolute;inset:0;z-index:6;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.10),rgba(255,255,255,0) 32%);border-radius:inherit}
+.phone__overlay{position:absolute;inset:0;z-index:3}
+/* sizes: pick by viewport so the phone always fits */
+.phone--s{--pw:150}.phone--m{--pw:230}.phone--l{--pw:280}
+@media (max-width:420px){.phone--l{--pw:244}.phone--m{--pw:200}}
+@media (min-width:900px){.phone--l{--pw:320}.phone--m{--pw:250}}
+@media (min-width:900px) and (min-height:880px){.phone--l{--pw:350}}
+@media (max-height:640px){.phone--l{--pw:190}.phone--m{--pw:160}}
