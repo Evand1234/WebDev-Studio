@@ -1,6 +1,8 @@
+> **Parked 18 Oct 2026.** Evan rejected this site as bland and built without his go-ahead. Reference for plumbing only. See `../../web-dev-context/07-honest-assessment-and-setup.md`.
+
 # BrandMasters site: stage 1 plan (design system, skeleton, devices)
 
-Planned 18 Oct 2026 on Opus 5.5; built on Sonnet 5.5 (see `../firstcheck.md`).
+Planned 18 Oct 2026 on Opus 5.5; built on Sonnet 5.5 (see `../../firstcheck.md`).
 
 ## Goal of this stage
 Give Evan **one screen he can open on his iPhone and judge the look by**: the hero area of the real site, with a realistic iPhone and laptop showing a real-looking client site. Everything else in this stage is foundation the later stages reuse.
@@ -25,14 +27,14 @@ Give Evan **one screen he can open on his iPhone and judge the look by**: the he
 ## Devices (reusable components, the most important part of this stage)
 - `Iphone`: iPhone 15 Pro proportions (≈1:2.03), thin titanium rim, dynamic island, status bar (time, signal, battery), home indicator. The screen is a real DOM container: children render a live mobile site at a 390 px logical width scaled to fit, so text is crisp and nothing is a shrunken screenshot.
 - `Laptop` (MacBook-style lid + base) and `BrowserFrame` (Safari-style bar) with the same "real content inside" rule.
-- Check 21st.dev references in `../web-dev-context/05-21st-dev-references.md` for principle; build our own if they can't be installed (21st.dev may be blocked from the network).
+- Check 21st.dev references in `../../web-dev-context/05-21st-dev-references.md` for principle; build our own if they can't be installed (21st.dev may be blocked from the network).
 
 ## Concept client site (shown inside the devices)
-"Marlow Street Barbers", Johannesburg, labelled as a concept example. Mobile and desktop versions: header with logo and a call button, hero photo, 4.9 Google rating line, services with prices, booking button. Photos: the CC0 barbershop photos in `../archive/v2-static-site/assets/img/photo/` (placeholders until better images are generated).
+"Marlow Street Barbers", Johannesburg, labelled as a concept example. Mobile and desktop versions: header with logo and a call button, hero photo, 4.9 Google rating line, services with prices, booking button. Photos: the CC0 barbershop photos in `../v2-static-site/assets/img/photo/` (placeholders until better images are generated).
 
 ## Foundation
 - Next.js (App Router, TypeScript, Tailwind v4), static export (`output: 'export'`).
-- Lenis smooth scroll + GSAP ScrollTrigger wired together once, in one provider, following `../web-dev-context/04-tech-stack-and-motion-rules.md`.
+- Lenis smooth scroll + GSAP ScrollTrigger wired together once, in one provider, following `../../web-dev-context/04-tech-stack-and-motion-rules.md`.
 - `src/config/contact.ts` holds WhatsApp, phone and email.
 - `npm run preview:single` builds a single self-contained HTML file (CSS, JS, fonts and images inlined) so it can be published as a preview link until Vercel is connected.
 

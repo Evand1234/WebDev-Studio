@@ -24,17 +24,20 @@ We always think and plan with **Opus 5.5** first, then build with **Sonnet 5.5**
 - In Claude Code this is automatic in this repo: `.claude/settings.json` sets the model to `opusplan` (Opus in plan mode, Sonnet once you leave plan mode), pinned to `claude-opus-5-5` and `claude-sonnet-5-5`. Start every task in **plan mode** (Shift+Tab), get the plan approved, then exit plan mode to build.
 - If a session can't switch models itself, say so at the start, plan anyway, and tell Evan which model should run the build.
 
-<!-- Add new rules below as 2., 3., ... Keep each rule short: the rule, then how to apply it. -->
+### 3. Show the components first. Never build a full site without Evan's go-ahead
+Before building, show Evan the components you want to use (real references you have actually looked at, a sketch, your pick and why). He picks. Only then build.
 
-### 3. Plan and show elements first. Never build a full site without Evan's go-ahead
-Before building anything, plan it and show Evan the elements you want to use (references, sketches, your pick and why). He picks. Only then build.
+- "Continue" or "go faster" means faster inside the step he approved, never permission to skip ahead.
+- If you're unsure whether he approved the next step, ask. Don't build to find out.
 
-- "Continue" or "go faster" means faster inside the stage he approved, never permission to skip ahead.
-- If you're unsure whether he approved the next stage, ask with one short question. Don't build to find out.
+### 4. Order: components, then one demo, then the site
+1. **Components:** a board of candidate components for each part of the site, with references and a pick for each. Evan chooses.
+2. **One demo:** one good demo built from the chosen components. It is the draft of the site, not a pile of separate demos. Evan approves it.
+3. **The site:** built from the approved demo.
 
-### 4. Order: elements, then demos, then the site
-1. **Elements:** a board of candidate elements (hero, scroll story, devices, before/after, pricing, FAQ, contact, transitions), with real references and a pick for each. Evan chooses.
-2. **Demos:** small working demos made only from the chosen elements. Evan approves each.
-3. **The site:** assembled from the approved demos.
+Stop for Evan's go-ahead after each step.
 
-Never move to the next step until Evan has approved the current one.
+### 5. Send image and video prompts first
+If the work needs any images or videos, the very first thing you send Evan is the exact prompts (one per file, with aspect ratio, ready to paste into Google Flow or Higgsfield). He makes them while you work and drops them in. Never fall back on random stock photos without telling him.
+
+<!-- Only Evan adds rules. Keep each rule short: the rule, then how to apply it. These set the process; they never limit creativity. -->

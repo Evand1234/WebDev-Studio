@@ -18,11 +18,14 @@ So: **clean, premium, standard modern design**, the kind good studios and top Sa
 
 One continuous scrolling page. Evan hates the feeling of separate "pages", so no multi-page site for BrandMasters, no hard section breaks. Sections should flow into each other.
 
-## The bad site and the story (Evan, 18 Oct 2026, he has said this many times)
-- **The "before" site is a normal person's site, not a disaster.** Model it on the look of the reference venue screenshot: a big centred title in a slightly dated font and colour, then paragraph after paragraph of centred grey text that says everything at once, then a strip of nice-enough photos dumped at the bottom over a faded background photo, where they don't belong. The owner tried a little. Nothing is broken, nothing is a joke, no pop-up circus. It's just tiring and forgettable.
-- **No trades as the example.** No barbers, plumbers or similar as the demo business. Keep it a generic "online business site" look, so any owner sees their own site in it.
-- **The story is about feelings.** As you scroll, compare how a visitor feels on their site (lost, skimming, leaving) with how they feel on ours (clear, welcome, one tap to act). Told by scrolling, not a video.
-- Never use the reference venue's name, text or photos. Write our own text in the same style.
+## The BrandMasters site (Evan, 18 Oct 2026, latest)
+- **Colours:** black, plus one accent colour that works with black (our choice; show it on the components board). This replaces the mint-slate/rose palette below.
+- **Feel:** see `08-evan-taste-references.md`. Premium like those, our own design.
+- **Flow:** a calm hero with a short intro, like a normal good site. Just under it, the **scroll storyline** starts.
+- **The storyline:** an average business site, the way most people's are. For the demo it's an **air-conditioning company**: walls of centred text, photos dumped at the bottom, slow, things take forever to load. It must look like someone tried: a bit functional, just crap, not broken or a joke. No "concept" label on it. This part is deliberately negative and shows how visitors feel on it, with motion graphics. Little text, but enough that people get it.
+- **Then the turn:** a smooth transition into what we do and how it works, which must feel good, then the packages and care plans (subscriptions) in the same colours.
+- **Who it's for:** it should feel like an online studio already building for all kinds of businesses. Trades (aircon, plumbers) are welcome but not the focus; don't show them much.
+- Never use the reference bad site's name, text or photos.
 
 ## Taste (still true)
 - Minimal text. Pictures and motion carry the message; words label what the picture already shows. Headlines 3 to 6 words.
@@ -37,7 +40,7 @@ One continuous scrolling page. Evan hates the feeling of separate "pages", so no
 - Same rule for laptops and browser frames.
 - Build it once as a reusable component and reuse it everywhere.
 
-## Palette (starting point, confirm in the design-system stage)
+## Palette (older, replaced by black + one accent above)
 From the V2 brief, which Evan chose: **mint-slate** (blue and white) from 21st.dev themes, the first pink from **rose-quartz**, with black or near-black for depth (themes by serafimcloud):
 - https://21st.dev/community/themes?preview=%2F%40serafimcloud%2Fthemes%2Fmint-slate
 - https://21st.dev/community/themes?preview=%2F%40serafimcloud%2Fthemes%2Frose-quartz

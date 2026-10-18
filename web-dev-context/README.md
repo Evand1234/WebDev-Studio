@@ -12,10 +12,11 @@ Everything a session needs to know to build for BrandMasters. Read `../firstchec
 | `05-21st-dev-references.md` | Real 21st.dev components and templates, with why each | Planning a section |
 | `06-history-and-lessons.md` | Every round so far, what Evan liked and hated, why things missed | Planning |
 | `07-honest-assessment-and-setup.md` | Why outputs weren't landing, and the setup and build plan we're switching to | Planning, or setting up sessions |
+| `08-evan-taste-references.md` | The sites and templates Evan calls modern and premium, and how to actually see them | Any design work |
 | `reference/` | Older notes (inspiration videos, scroll-experience analysis, motion-graphics method) | Only when a file above points you there |
 
 ## Rule for conflicts
-Newest decision wins. The direction Evan set on **18 Oct 2026** (clean, premium, standard modern design; smooth, never glitchy) beats anything older, including files in `reference/` and `archive/`.
+Newest decision wins. The latest direction Evan set on **18 Oct 2026** (premium and modern like his references, black + one accent, scroll storyline under a calm hero; smooth, never glitchy) beats anything older, including files in `reference/` and `archive/`.
 
 ## Last updated
 18 Oct 2026.
