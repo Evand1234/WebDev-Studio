@@ -24,3 +24,10 @@ Evan picks (or says "go with your picks"), then ONE demo of the whole page = the
 
 ## Brand kit (19 Oct 2026)
 Evan asked for a brand-kit style page: part 1 = what we're building (name, colour, font, page order, motion), part 2 = every element in our style. Live: https://claude.ai/artifact/HKfnBfV4Ea9txxi1Ak4YQn. Source: plans/brand-kit/index.html. Price-card contents and FAQ answers are placeholders until Evan confirms them.
+
+## The real site (19 Oct 2026)
+- Evan: no real businesses or trades anywhere (aircon dropped); the statue with sunglasses leads; feel like a creative online brand. Hero A "Glasses on" (dull statue, ember mirror glasses drop on by scroll, glow on, fly into a lens). The before site is the made-up brand "Aurelius" on an ordinary WORKING template (forgettable, not broken), five moments one at a time with a spotlight, then the same brand rebuilt.
+- Spec: site/SPEC.md (v2). Build: site/ (plain HTML + GSAP/ScrollTrigger + Lenis, vendored; chosen over Next.js for speed, any-device support and static SEO). Tests: site/CHECKS.md.
+- Preview: https://claude.ai/artifact/6kAQ6fCZRtXj5DDfexZm7G (CDN scripts swapped in for the preview only).
+- Statue is a drawn stand-in until Evan supplies the photo (front view, no glasses; prompt in the thread). Swap assets/statue.webp, re-align with --gx/--gy/--gw and --lx/--ly.
+- DRAFT, Evan to confirm: package contents and timelines, FAQ 1 and 5, TappedFlow wording, privacy page.
