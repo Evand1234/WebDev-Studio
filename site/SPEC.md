@@ -1,4 +1,4 @@
-# BrandMasters site: build spec (v4, 19 Oct 2026; read "v3 changes" then "v4 changes" at the end; later sections override earlier ones)
+# BrandMasters site: build spec (v5, 19 Oct 2026; read the "v3", "v4" and "v5 changes" at the end in order; later sections override earlier ones)
 
 > v2 replaces v1's aircon search hero and story. Evan (09:28–09:30): no real businesses or trades anywhere; the statue with sunglasses leads; it should feel like a creative online brand that makes owners want an online-first site. Hero = option A "Glasses on". Keep a before site that is ordinary and WORKING, just forgettable (not broken, not 2016).
 
@@ -288,3 +288,33 @@ After moment 5, the ember arch "Now picture it like this." stays. Then a NEW SCE
 
 ### 4. Everything else
 Keep all other sections, lime usage, slower phone timings and the realistic-motion rules from v3. Remove dead code from the old statue hero (lightmask, rig, visor reflection on the end card).
+
+---
+
+## v5 changes (19 Oct 2026, 18:24, Evan + a friend's reaction). These OVERRIDE everything above.
+Evan likes draft 3, but the site is too dark and "online heavy": a friend preferred TappedFlow because it feels lighter and more welcoming. Goal: maximise how welcome a normal business owner feels. Evan chose: whole site light and warm, dark only inside the phone demo; keep the hero layout but REMOVE the cursor lens.
+
+### 1. Light, warm palette (whole site)
+- Tokens: --bg #f7f3ec (warm off-white), --surface #fffdf9, --surface-2 #efe8dd, --ink #1a1714, --ink-2 #4a433c, --muted #6b635a, --line rgba(26,23,20,.09), shadows soft and warm (0 1px 2px rgba(60,40,20,.06), 0 12px 32px -12px rgba(60,40,20,.18)).
+- Ember gradient (#ff7a1a→#e5261a) stays for the gradient words and as soft warm glows (low opacity peach radial light, never big dark-orange floors).
+- Green = "better": on light backgrounds use --green-ink #2f7a12 for text/ticks/lines; lime #c6ff3d only as a FILL behind dark text (WhatsApp buttons, chips, active dots) with --lime-ink #0c1400 text.
+- Dark stays ONLY inside the after-site phone screen (the statue site is a dark site, which is fine; it's the client's site) and the phone bezels. Everything else (nav pill, sections, cards, FAQ, prices, footer, end card, privacy page) becomes light. Nav pill: white/90% with a hairline and soft shadow.
+- Text contrast must pass WCAG AA everywhere. Keep Host Grotesk + Geist Mono.
+- Update meta theme-color, og.png (light version), favicon stays (black square with lime dot + white B is fine).
+
+### 2. Hero: same layout, no lens, light
+- Remove the lens, ring, mask, pointer/touch lens code and "Move/Drag to look closer" labels.
+- Keep the drifting wall of site tiles behind the headline, now light: tiles are white/cream mini sites on the warm background with soft shadows, low contrast so the headline stays the hero. The wall is a mix: most tiles are plain "ordinary" sites (light grey blocks, dull blue button), some are our warm premium versions (peach/ember glow image, lime button, real 2–3 word headline).
+- Replace the lens with a calm automatic moment: every ~2.4s one ordinary tile (not under the headline) gently upgrades in place into its premium twin (crossfade 0.9s, power1.inOut, tiny scale 1→1.02 and soft lift shadow), and stays upgraded; after all visible ones upgrade, they slowly reset one by one. Transform/opacity only. Pause when offscreen or the tab is hidden. Reduced motion: static mixed wall.
+- A soft warm radial light (peach, very low opacity) behind the headline instead of the dark scrim, so the headline reads clearly on light.
+- Corner labels: "Web design studio" / "Johannesburg, ZA" / "Scroll" / "(01)".
+- Scroll: the headline drifts up and fades and the camera pushes into one ordinary tile, which becomes the Aurelius BEFORE phone (as now).
+
+### 3. Story and the after scene, re-lit for light
+- Before story: light background; the phone and its grey before-site stay as they are; captions are dark text on light chips; the spotlight dimming becomes a light veil (rgba(247,243,236,.7)) instead of black.
+- "Now picture it like this." arch: ember gradient text on light.
+- Built by BrandMasters scene: a bright "studio": warm off-white with a soft peach/ember glow rising behind the phone and a faint floor shadow (not a reflection on black). Eyebrow in --green-ink mono, H2 in ink. Callouts are dark text on white cards with --green-ink numbers; leader lines --green-ink at 60%.
+- The zoom into the left lens is unchanged up to full lens green (that deep green from Evan's photo); then fade to the LIGHT background (not black) into the next section.
+
+### 4. Everything else
+Keep every section, its words, timings and the one-caption-at-a-time rule. Compare slider: the before side stays the ordinary light site, the after side stays the dark statue site (it's the client's site). Prices: Professional card highlighted with a lime top band and green ticks on white. End card: light, phone mock still renders their site in our dark statue-free style.
