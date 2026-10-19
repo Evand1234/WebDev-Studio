@@ -1,4 +1,4 @@
-# BrandMasters site: build spec (v2, 19 Oct 2026)
+# BrandMasters site: build spec (v3, 19 Oct 2026; see "v3 changes" at the end, they override)
 
 > v2 replaces v1's aircon search hero and story. Evan (09:28–09:30): no real businesses or trades anywhere; the statue with sunglasses leads; it should feel like a creative online brand that makes owners want an online-first site. Hero = option A "Glasses on". Keep a before site that is ordinary and WORKING, just forgettable (not broken, not 2016).
 
@@ -206,3 +206,46 @@ Inside the phone, the **Aurelius rebuilt** site (390×844, dark, premium, it is 
 - Use Lenis-free scrolling in tests (`window.scrollTo` then wait 400ms) and also test with reduced motion emulated.
 - Look at the screenshots yourself. Check: no overlapping text, captions never stacked, the spotlight frames the right thing each moment, the switch arch fully covers, rebuilt site readable, cards not clipped, nothing cut off at 390.
 - Measure: total bytes transferred on load (from the Playwright network log), and Lighthouse if available (`npx lighthouse` may not be installed; if not, say so).
+
+---
+
+## v3 changes (19 Oct 2026, from Evan's review of draft 1). These OVERRIDE anything above.
+Evan liked: the elements, how they connect, the Elena feel. Evan disliked: the glasses dropping (looks fake, "vibe coded"), phone scrolling too fast through sections, no green.
+
+### A. The statue is ONE still photo with the glasses already on
+- Final asset (Evan will supply): photorealistic marble bust of a bearded Greek philosopher (curly hair, full curly beard), three-quarter view turned slightly left, wearing a one-piece wraparound **neon lime-green shield visor**, black background. Two crops: `assets/statue-4x5.webp` (phones) and `assets/statue-16x9.webp` (desktop, bust in the right third). Use `<picture>` with a media query so each device downloads only one. Keep the visor centre as CSS vars `--vx`, `--vy` (percent of the image) per crop, so the zoom origin can be re-aimed in one place.
+- Stand-in until then: redraw the stand-in as close to that as possible: a bearded, curly-haired bust, three-quarter view, the lime visor BAKED INTO the same image (one image, no separate glasses layer), realistic shading (no outlines, no cartoon strokes). Export both crops. It's temporary, but it must not look cartoonish.
+- Delete the glasses SVG layer, the drop animation, `.statue-dull`, and the lens glint. No dull→lit crossfade of two statue copies.
+
+### B. New hero behaviour (realistic, camera-only)
+- On load (not scrubbed, ~2.4s): the frame starts almost black; a soft studio light "comes up" on the statue: a radial light mask/vignette layer over the image animates its OPACITY from 1 to ~0.15 (light reveals from upper-left), then the ember glow behind fades up. At the same time the H1 reveals line by line through the mask (white; "site first." in ember gradient). Sub line + buttons + corner labels follow. No other motion.
+- Desktop cursor: the statue image + glow get a very small parallax (translate up to 10px, opposite the cursor, lerp .06); the H1 moves 4px the other way. No 3D tilt, no glint.
+- Scroll (scrub): the H1, sub line, buttons and labels drift up and fade; the camera PUSHES INTO THE VISOR: the statue scales up with `transform-origin: var(--vx) var(--vy)` until the green visor fills the screen; a lime-tinted gradient layer (the visor's colour, with a soft highlight band) takes over as the image gets too large, then darkens to the story's near-black. During the push, the line "Here's what most visitors see." reveals (mask) and holds, then fades as the phone arrives.
+- Use `power2.inOut`-style eases on the scrub segments; no overshoot, no bounce anywhere on the page.
+
+### C. Green as the second colour, with one meaning: "better"
+- New tokens: `--lime:#c6ff3d; --lime-dim:rgba(198,255,61,.14); --lime-ink:#0c1400;`.
+- Rule: ember = the brand glow and main moments; lime = "the better version / active / good". The before site stays grey/blue-generic, never lime.
+- Apply lime to: the statue visor; ticks in the after caption; active story progress dots; the AFTER side label and the handle knob on the compare slider; the active step's number + progress bar in How it works; the "Recommended" tag on Professional (keep the card's ember glow); hover border on What-we-do cards; focus rings; the top scroll-progress bar; the cursor dot (ring stays ink); the timer/"after" chips; small mono eyebrows on lime-meaning sections.
+- WhatsApp buttons everywhere (nav pill, floating mobile button, after-site button, end card, price buttons stay as they are) become lime with `--lime-ink` text and the WhatsApp glyph, instead of WhatsApp's own green. One green on the page.
+- Keep lime under ~8% of any screen. It's a signal, not a wash.
+
+### D. The statue as the signature (recurring with meaning, not decoration)
+1. Hero (above).
+2. The rebuilt "Aurelius after" site inside the phone uses the same statue photo (4:5 crop).
+3. Compare slider AFTER side uses the 16:9 crop.
+4. End card: the statue (4:5 crop, smaller, right side on desktop / top on phone) next to the "Type your business name" input. As the visitor types, their business name appears REFLECTED in the visor: an absolutely positioned text layer clipped to the visor shape (a CSS `clip-path: polygon()` tuned to the visor, vars `--visor-clip`), mirrored/skewed slightly to follow the visor's curve, low-opacity white with `mix-blend-mode: screen`. Empty input reflects "Your Business". This replaces the small phone mock there.
+5. The mark: a tiny visor shape (a lime rounded wraparound bar SVG, 18×6) is used as: the nav wordmark's dot (replacing the ember dot), the section eyebrow marker before mono labels, and the favicon (black square with the lime visor). The top scroll-progress bar is lime.
+Do NOT put the statue anywhere else.
+
+### E. Slower, calmer scrolling on phones (Evan: "it's very fast to scroll past sections")
+- Story pin length on phones (< 820px wide): `+=1700%` (was ~900%). Desktop `+=1200%`. Give every caption moment a longer HOLD than its transition (roughly 2:1 hold:move), including the "Now picture it like this." hold.
+- How-it-works stacking cards on phones: each card gets at least 100svh of scroll before the next one stacks.
+- What-we-do on phones: keep native swipe, but add a visible hint: the first card peeks and the row nudges once when it enters.
+- Reveals for normal sections start later (`start: "top 75%"`) and run longer (0.9–1.1s), so the eye lands before the next thing.
+- Keep Lenis `syncTouch:false` (native touch). Don't hijack phone scrolling; slowness comes from longer pinned scenes and longer holds, not from fighting the finger.
+
+### F. "Realistic, not vibe-coded"
+- Remove anything cartoon-like: fake tap rings become a subtle real-looking touch indicator (a 28px soft white dot at 35% opacity with a quick 150ms press scale, no outline ring, no ripple circles).
+- No elements flying in from off-screen during the story except the phone rising once. Inside the phone: page scrolls, popup slides up (as on a real phone), spotlight moves. That's it.
+- Shadows and glows must look physical: no hard-edged glows, no neon outlines on the phone.
