@@ -64,3 +64,8 @@ Same standard. Each client site is built around that business (its photos, its r
 - The statue lives only inside "the site we make" demo: Evan's photo, dark grey stone Greek bust with real round sunglasses and dark green lenses (keep the darker green). Never a drawn or cartoon statue.
 - "Our site" must be a clearly different scene that says it's ours and why it's better, not more comparing.
 - Zooms into the glasses: not slow; about 1 viewport height.
+
+## 19 Oct 2026 evening update (Evan, draft 4)
+- Too dark and "online heavy" put people off (a friend preferred TappedFlow for feeling lighter). The site is now LIGHT and WARM: cream #f3ecd9 background, dark only inside client-site phone screens. Aim to make normal business owners feel welcome.
+- No cursor effects in the hero. Hero = Evan's Google Flow image (cute 3D shopfront with lime awning on a white phone, cream background), headline on the left/top.
+- Evan likes sending image prompts for Google Flow and making the images himself; give him prompts with a matching background colour and empty space for text, 16:9 and 4:5.

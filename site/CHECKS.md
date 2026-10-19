@@ -1,28 +1,31 @@
-# CHECKS (draft 3: "The lens" hero + studio after scene)
+# CHECKS (draft 4: light and warm, shopfront hero)
 
 Tested 2026-10-19 with headless Chromium (Playwright) against `python3 -m http.server`. No real iPhone, no Safari, no Lighthouse.
 
 ## Automated results
-- Console errors: 0 at 320, 390, 768, 1440, 1920.
-- Horizontal overflow: 0px at 320, 390, 768, 1440, 1920.
-- Story stepped in 400 steps (390x844, 320x640, 1440x900, 1920x1080): never more than one caption/callout visible (max = 1).
-- Pin length: phone 14.78 vh, desktop 11.15 vh.
-- Reduced motion: no pins, static lens, story shown as a list, after item built from the callout texts.
-- Touch: manual CDP touch drag scrolls the page over the hero (touch-action: pan-y, no preventDefault); lens follows the finger.
+- Console errors: 0 at 320, 390, 768, 1440, 1920 (also 375x629, 1920x1080, reduced motion at 390 and 1440).
+- Horizontal overflow: 0px at 320, 390, 768, 1440, 1920 (sampled at 25 scroll positions each) and in reduced motion at 390 and 1440.
+- Story stepped in 400 steps (390x844, 320x640, 1440x900, 1920x1080): never more than one caption/callout/line visible (max = 1, 0 violations).
+- Pin length: phone 14.78 vh, desktop 11.15 vh (unchanged).
+- Hero at 390x844 shows headline, both buttons and the whole shop; also checked 375x629, 320x640, 768x1024, 1440x900, 1920x1080.
+
+## What changed in draft 4
+- Whole site light and warm (--bg #f3ecd9); dark only inside the after-site phone screen, the phone bezels, the compare slider's after side and the end-card phone mock screen.
+- Hero is the client's shopfront image (see SPEC section 5). The cursor lens and the tile wall are gone.
+- Gradient TEXT uses a deeper ember (#e9560a to #c8191a) so large text passes 3:1 on cream; the bright ember stays for fills and glows. Green text is #2b7210 (slightly darker than the #2f7a12 in the spec, so it passes 4.5:1 on #f3ecd9). Small ember text is #b13a08.
+- Buttons: lime fill with dark text; ghost = ink outline. The Professional card button is lime (white text on ember failed contrast). The "What we do" first card is peach with dark text for the same reason.
+- Removed: grain overlay, lime rim light on the phone, black end of the zoom (now fades to cream).
 
 ## Lens / statue values (in :root, with comment)
-- 4:5 image: --lx 38.6%, --ly 28.4%, lens box 14.6% x 7.4%.
-- 16:9 image: --lx-wide 69.8%, --ly-wide 30.2%.
-- Statue images: statue-4x5.webp 99.7 KB, statue-16x9.webp 55.6 KB.
+- 4:5 image: --lx 33.4%, --ly 44.5%, lens box 23.1% x 15.8%. 16:9: --lx-wide 42.6%, --ly-wide 44.5%.
 
 ## Screenshots
-/tmp/claude-0/-home-claude/a050df64-c923-5367-88f9-d539c0739886/scratchpad/site-shots-3/ (m-* = 390x844, d-* = 1440x900, m320-*, mmini-* = 375x629, sheet-* = contact sheets).
+/tmp/claude-0/-home-claude/a050df64-c923-5367-88f9-d539c0739886/scratchpad/site-shots-4/ (m-* = 390x844, d-* = 1440x900, sheetm.jpg / sheetd.jpg = story contact sheets, sheet-sec-*.jpg = section sheets).
 
 ## Not verified / known weak spots
-- Frame rate: headless software rendering only. Desktop hero idle median frame was 83 ms there (masked layers on a CPU rasteriser); phone was a steady 16.7 ms. Real GPU not measured. Check on a real PC.
-- Statue is a rendered stand-in (nose/cheeks slightly cartoonish; 16:9 has a hard torso edge on the left). Replace with a real photo.
-- "Tile becomes phone" is a push into a tile then a dark overlay and the phone rising, not a literal morph.
-- Grey layer blur is dropped under 720px for speed.
-- WhatsApp button is hidden during the pinned story.
-- Hero sub line hidden only when viewport height <= 540px.
+- Contrast was checked by calculation on the tokens, not with an automated scanner over every element. Text on the photo-free parts only.
+- No real device: frame rate, Safari mask/blend behaviour (the hero picture uses mask-composite and a screen-blend glow) not measured.
+- Hero image edge: the picture's cream is a hair lighter than --bg; hidden by the feathered mask, may show faintly on some screens.
+- Statue is a rendered stand-in; replace with a real photo.
+- WhatsApp float button is hidden during the pinned story.
 - Compare slider on phones uses the 4:5 crop for the AFTER side.
