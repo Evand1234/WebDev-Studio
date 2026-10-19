@@ -21,3 +21,6 @@ Black (#050505) + ember orange-red (#ff7a1a to #e5261a). One clean font (Host Gr
 
 ## Next
 Evan picks (or says "go with your picks"), then ONE demo of the whole page = the draft of the site. Photos come from `/mnt/project-files/brandmasters-md/09-image-and-video-prompts.md` (he makes them in Google Flow).
+
+## Brand kit (19 Oct 2026)
+Evan asked for a brand-kit style page: part 1 = what we're building (name, colour, font, page order, motion), part 2 = every element in our style. Live: https://claude.ai/artifact/HKfnBfV4Ea9txxi1Ak4YQn. Source: plans/brand-kit/index.html. Price-card contents and FAQ answers are placeholders until Evan confirms them.
