@@ -13,5 +13,8 @@ What Evan points to when he says "modern" and "premium". Learn the **style behin
 
 **Bad-site reference:** geckoridge.co.za ("that's what 99% of people have"). Use it only to understand what an average bad site looks and feels like. Never use its name, text or photos.
 
+## What we learned from them
+See `../ref-study/NOTES.md` (screenshots, scroll frames and notes captured on Evan's PC, 18 Oct 2026). Evan meant these as a general picture of modern, not a list to analyse to death.
+
 ## Seeing these from a cloud session
-The default cloud network blocks dribbble.com, cdn.dribbble.com, 21st.dev previews (`*.21st.app`), contra.com and geckoridge.co.za; WebFetch only returns page text, which for these is almost empty. Say so before planning, and get a real look first: via Evan's PC (computer use or Claude in Chrome), screenshots from Evan, or an environment that allows those domains. Never plan a look from a link you haven't actually seen.
+The default cloud network blocks dribbble.com, cdn.dribbble.com, 21st.dev previews (`*.21st.app`), contra.com and geckoridge.co.za; WebFetch only returns page text, which for these is almost empty. Say so before planning, and get a real look first: via Evan's PC (computer use or Claude in Chrome), screenshots from Evan, or an environment that allows those domains. Never plan a look from a link you haven't actually seen. What worked: a Remote Control session on Evan's PC (folder `C:\dev`, which now has Git and Node) opened them in the desktop app's browser and pushed captures to the repo.

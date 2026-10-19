@@ -1,6 +1,8 @@
 # Tech stack and motion rules
 
 ## Stack (decided 18 Oct 2026)
+
+> **19 Oct 2026:** the BrandMasters site itself is plain HTML + GSAP/ScrollTrigger + Lenis (vendored), not Next.js: lighter, works on every device, static SEO, and the private preview equals the real thing. 21st.dev installs were blocked anyway. Revisit Next.js only if we need React components.
 - **Next.js (App Router) + TypeScript + Tailwind CSS + shadcn/ui.** Static export where possible.
 - **Motion** (formerly framer-motion) for component animation. **GSAP + ScrollTrigger** only for the scroll-driven showcase. **Lenis** for smooth scrolling.
 - Deploy on **Vercel**: every push gets a preview link Evan can open on his iPhone.

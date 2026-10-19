@@ -13,6 +13,7 @@ Everything a session needs to know to build for BrandMasters. Read `../firstchec
 | `06-history-and-lessons.md` | Every round so far, what Evan liked and hated, why things missed | Planning |
 | `07-honest-assessment-and-setup.md` | Why outputs weren't landing, and the setup and build plan we're switching to | Planning, or setting up sessions |
 | `08-evan-taste-references.md` | The sites and templates Evan calls modern and premium, and how to actually see them | Any design work |
+| `09-site-plan.md` | The current plan for the BrandMasters site, links to the board and demo, what's next | Any BrandMasters site work |
 | `reference/` | Older notes (inspiration videos, scroll-experience analysis, motion-graphics method) | Only when a file above points you there |
 
 ## Rule for conflicts

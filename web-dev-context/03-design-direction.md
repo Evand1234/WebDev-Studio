@@ -52,3 +52,20 @@ Be creative inside this direction: pick the best references, combine them well, 
 
 ## Client sites (later)
 Same standard. Each client site is built around that business (its photos, its reviews, its one main action: call, book, or quote). Demos are built to Professional level.
+
+## 19 Oct 2026 update (Evan)
+- Second colour: neon lime #c6ff3d, meaning "better" (visor, ticks, active states, WhatsApp buttons). Ember stays the glow. Before sites stay grey.
+- Signature: a realistic marble bust of a bearded philosopher wearing a one-piece lime visor (one still photo, glasses already on, never animated onto him). Appears in hero, rebuilt site, compare, end card (visor reflects the typed name). Visor shape is the small brand mark.
+- No real businesses, trades or people shown anywhere; business types only as words.
+- Motion must look real: camera moves and light only, nothing flying or bouncing in. Phones need long pinned scenes so sections don't fly past.
+
+## 19 Oct 2026 afternoon update (Evan, draft 3)
+- The statue is NOT the hero. Hero must be its own unique interactive idea (now: a wall of grey sites with a cursor/finger lens revealing premium versions).
+- The statue lives only inside "the site we make" demo: Evan's photo, dark grey stone Greek bust with real round sunglasses and dark green lenses (keep the darker green). Never a drawn or cartoon statue.
+- "Our site" must be a clearly different scene that says it's ours and why it's better, not more comparing.
+- Zooms into the glasses: not slow; about 1 viewport height.
+
+## 19 Oct 2026 evening update (Evan, draft 4)
+- Too dark and "online heavy" put people off (a friend preferred TappedFlow for feeling lighter). The site is now LIGHT and WARM: cream #f3ecd9 background, dark only inside client-site phone screens. Aim to make normal business owners feel welcome.
+- No cursor effects in the hero. Hero = Evan's Google Flow image (cute 3D shopfront with lime awning on a white phone, cream background), headline on the left/top.
+- Evan likes sending image prompts for Google Flow and making the images himself; give him prompts with a matching background colour and empty space for text, 16:9 and 4:5.
