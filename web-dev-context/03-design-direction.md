@@ -52,3 +52,9 @@ Be creative inside this direction: pick the best references, combine them well, 
 
 ## Client sites (later)
 Same standard. Each client site is built around that business (its photos, its reviews, its one main action: call, book, or quote). Demos are built to Professional level.
+
+## 19 Oct 2026 update (Evan)
+- Second colour: neon lime #c6ff3d, meaning "better" (visor, ticks, active states, WhatsApp buttons). Ember stays the glow. Before sites stay grey.
+- Signature: a realistic marble bust of a bearded philosopher wearing a one-piece lime visor (one still photo, glasses already on, never animated onto him). Appears in hero, rebuilt site, compare, end card (visor reflects the typed name). Visor shape is the small brand mark.
+- No real businesses, trades or people shown anywhere; business types only as words.
+- Motion must look real: camera moves and light only, nothing flying or bouncing in. Phones need long pinned scenes so sections don't fly past.
