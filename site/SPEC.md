@@ -1,9 +1,9 @@
-# BrandMasters site: build spec (v1, 19 Oct 2026)
+# BrandMasters site: build spec (v2, 19 Oct 2026)
 
-> **SUPERSEDED (19 Oct 2026, 09:28).** Evan rejected the aircon hero and story: no real businesses or trades anywhere. The statue with sunglasses leads and the site should feel like a creative online brand. Kept only for the parts that still apply (tokens, global UI, cursor, sections 2–10 structure, SEO, performance, testing). v2 follows once Evan picks a hero.
+> v2 replaces v1's aircon search hero and story. Evan (09:28–09:30): no real businesses or trades anywhere; the statue with sunglasses leads; it should feel like a creative online brand that makes owners want an online-first site. Hero = option A "Glasses on". Keep a before site that is ordinary and WORKING, just forgettable (not broken, not 2016).
 
 Written in the planning pass (Opus). The build pass (Sonnet) follows this exactly; anything unclear goes back as a question, not a guess.
-Evan approved: search hero, extra Google pages later, full prices, Claude drafts package contents, free preview offer, TappedFlow as real work, 50% deposit then rest at launch (EFT), no photos (everything drawn in code) except one hero-quality "statue" image.
+Evan approved: hero A "Glasses on", extra Google pages later, full prices, Claude drafts package contents, free preview offer, TappedFlow as real work, 50% deposit then rest at launch (EFT), no photos (everything drawn in code) except one hero-quality "statue" image.
 
 ## What this site is
 BrandMasters' own marketing site (Johannesburg web studio). It must feel premium, play like a smooth scroll film, and leave a South African owner knowing: what we do, for whom, how much, how long, how to start. It is also the standard for every future site.
@@ -12,7 +12,7 @@ Feel: the Elena Voss template (see `../ref-study/NOTES.md` section 4 and `../ref
 
 ## Hard rules
 - No invented reviews, ratings, stats, client logos or awards. No "trusted by". No personal name. No email address on the page.
-- Never mention or show Gecko Ridge. The bad site is our made-up "Arctic Breeze Air Conditioning".
+- Never mention or show Gecko Ridge. The before/after brand is our made-up creative brand "Aurelius" (no product or trade is ever named).
 - No photos of people or trades. Business types are only *words*.
 - Animate only `transform` and `opacity` (and CSS variables that feed them). No animating `filter: blur()` during scrub on mobile; on desktop a blur on ONE element at a time is OK if it stays at 60fps.
 - One scroll system: Lenis + GSAP ScrollTrigger (`lenis.on('scroll', ScrollTrigger.update)`, `gsap.ticker.add(t=>lenis.raf(t*1000))`, `gsap.ticker.lagSmoothing(0)`). `ScrollTrigger.config({ignoreMobileResize:true})`. Use `svh`.
@@ -62,61 +62,68 @@ Reuse the visual pieces from `../plans/brand-kit/index.html` (buttons, pills, ph
 
 ## The page, top to bottom (each block = one `<section>` with an id)
 
-### 1. Hero + story: ONE pinned stage (`#story`), the heart of the site
-A single pinned stage (`pin:true`, `scrub:0.8`) ~ `+=900%` scroll on desktop and `+=800%` on phones. Everything in it is driven by one master timeline with labels. Use the demo's approach: a phone made of `.bezel/.screen/.island` and a 390×844 inner screen scaled by `--s` to fit (`--ph: min(70svh, 640px)` desktop, `min(60svh, 540px)` phone). Reuse demo code from `../demos/story-sketch/index.html` where it helps (phone, bad page styles, good page styles) but rebuild the timeline to this script.
+### 1. Hero "Glasses on" + the story: ONE pinned stage (`#story`), the heart of the site
+One pinned stage (`pin:true`, `scrub:0.8`), about `+=1000%` on desktop and `+=900%` on phones, driven by one master timeline with labels (`hero`, `glasses`, `lens`, `before`, `m1`…`m5`, `switch`, `after`). Mobile-first: everything must compose at 390×844 first.
 
-**Background**: black with the Elena-style blurred ember blobs (two or three big radial gradients, slowly drifting via CSS keyframes on transform only, low opacity) + a very faint grain (tiny inline SVG noise as background-image, opacity .05) + the cursor glow.
+**Assets (statue)**
+- `assets/statue.webp`: a classical white marble bust, FRONT view facing the camera, NO glasses, on pure black, transparent-looking edges (black bg is fine since the page is black). Evan will supply the real one; until then build a stand-in (see "Stand-in" below). Keep it in a fixed-size box (aspect 4:5) so swapping the file needs no code change.
+- Two stacked copies of the same image: `.statue-dull` (CSS `filter: grayscale(1) brightness(.55) contrast(.9)` set statically, never animated) and `.statue-lit` (normal), crossfaded with opacity. Plus `.rim` layers: two radial ember gradients positioned at the statue's right edge and behind the head (opacity animated).
+- **The glasses are SVG drawn in code** (a separate layer, so they can drop on): a sleek wraparound shape, matte black frame, two lenses filled with a mirrored ember gradient (#ffb347 → #ff5b1f → #e5261a) plus a white specular streak. Position/size them with CSS variables (`--gx`, `--gy`, `--gw` as % of the statue box) so they can be re-aligned in one place when the real photo arrives.
+- Stand-in: since no photo exists yet, draw the bust in SVG (or canvas → PNG): soft marble-white head, neck and shoulders with subtle shading gradients and a faint vein texture, classical short curls suggested by a few overlapping circles at the top, closed calm features hinted by soft shadows (eyes/brow line, nose ridge, lips). It must read as "a marble statue" at phone size and look tasteful, not cartoonish. Export to `assets/statue.webp` (or .png if no webp encoder) at 1000×1250, under 120 KB.
 
-**Beat 0: Intro (plays on load, not scrubbed, ~2.2s)**
-- Centre: a search bar card (white-ish glass, 640px max, radius 999px, height 64px, ember focus ring glow) with a small magnifier icon. It TYPES "aircon repair joburg" letter by letter (60ms per letter, with a blinking caret).
-- Above it, the H1 reveals line by line through a mask (Elena style): line 1 "They see your", line 2 "site first." where "site first." uses the ember gradient text.
-- Below the bar: mono label "Scroll" with a thin animated line.
-- Under the H1 (small, ink2, max 34ch): "Before they call, they Google you. Then they judge you in seconds. We build the site that wins that moment."
-- Do not wait for the intro to finish before scroll works.
+**Layout of the hero frame (rest state after intro)**
+- Statue centred, bottom-aligned, height ≈ 78svh (phone ≈ 62svh), slightly overlapping the bottom edge.
+- The H1 is HUGE and sits BEHIND the statue (z-index below) so the head breaks through the letters (Meat Shop depth trick), but stays readable: line 1 "They see your" above/behind the head, line 2 "site first." lower, crossing the chest/shoulders. On phones: line 1 at top (above the head, not overlapped), line 2 just below the chin crossing the shoulders. Size clamp(52px, 13vw, 190px), letter-spacing -.05em, weight 400.
+- Corner labels (mono 11px, ink3): top-left under the nav "Web design studio", top-right "Johannesburg, ZA", bottom-left "Scroll to put them on", bottom-right "(01) Hero".
+- After the glasses land: a sub line (ink2, 34ch max) bottom-left on desktop / under line 2 on phone: "Most websites work. Few get remembered. We build the ones people show off." and two buttons: ember "WhatsApp us" + ghost "See how" (scrolls to `#story` label `before`).
 
-**Beat 1: Results (scrub)**
-- The H1 and sub line lift and fade up. The search bar moves to the top of a "results" card that grows below it: 4 result rows (title in blue-ish ink `#8ab4f8` at 90%, a green-ish url line `#9ccc9c`, two grey text lines). Results: "Arctic Breeze Air Conditioning | Home" (arcticbreeze-aircon.co.za), "CoolFix Aircon Joburg", "Polar Air Services", "Joburg Aircon Pros". Do NOT use Google's logo or colours for branding; it's a generic search page.
-- A tap indicator (a 34px white ring with a ripple) moves onto the first result and taps (ripple). The first row highlights.
+**Beat 0: intro on load (not scrubbed, ~1.6s)**
+Black → the dull statue fades and rises 30px into place → H1 reveals line by line through a mask, in DIM grey (ink at 28%) → corner labels fade in → nav fades in. Scroll works immediately.
 
-**Beat 2: Into their site**
-- The results card scales and morphs into the phone: simplest robust approach: results card fades/scales down to 0.9 while the phone rises from below (y 40% → 0, scale .92 → 1) and the phone screen shows a white loading state (spinner + grey skeleton bars) for a short scrub segment, then the Arctic Breeze bad page.
-- From here the layout is: desktop = phone on the right half, a caption column on the left; phone (<820px) = caption block above the phone, phone below, both inside the stage (caption max 3 short lines).
-- Caption column contents: mono counter "01 / 05", a one-line headline (H3 size, ink), one line of body (ink2), and 5 progress dots (active = ember).
+**Beat 1: glasses on (scrub, 0 → ~18%)**
+- Glasses start above the frame (y -120vh, rotate -10°, scale 1.1) and drop onto the face, easing out (`power3.out`), with a tiny settle at the end (y -6px → 0) but no bounce.
+- At the moment they land (last 15% of the beat): `.statue-lit` fades in over `.statue-dull`, the rim lights and the big background ember glow switch on, the H1 crossfades from the dim copy to the lit copy (white, with "site first." in the ember gradient), corner label "(01) Hero" swaps to "Glasses on.", the sub line and buttons rise in.
+- Desktop cursor: the statue group (statue + glasses + rim) gets a subtle 3D turn toward the cursor (rotateY ±7°, rotateX ±4°, perspective 1200px, lerp .08) and a white/ember glint moves across the lenses following the cursor (a radial gradient inside the lens clip, positioned by CSS vars). Touch: idle sway ±2° and the glint sweeps every 4s. These run on a separate wrapper from the scrubbed transforms so they never fight.
 
-**Beats 3–7: The five moments (one at a time, never stacked)**
-Inside the phone, a "spotlight" layer: a dark overlay (rgba(0,0,0,.62)) with a rounded transparent hole that moves to frame the part being talked about (implement as a positioned box with a huge `box-shadow: 0 0 0 999px rgba(0,0,0,.62)` and border-radius 14px; animate its transform/scale only, set its size per moment with fixed pixel values in the 390×844 space; or one element per moment cross-faded). Each moment: spotlight moves → caption crossfades (old out up 12px, new in from 12px below) → hold for a good stretch of scroll → next. Only ONE caption visible at any time.
+**Beat 2: into the lens (~18% → ~30%)**
+- H1, sub line, buttons and labels fade out fast. The statue group scales up hugely (to ~14×) with `transform-origin` at the centre of the LEFT lens, so the camera flies into the lens. The lens's ember mirror fills the screen, then darkens to near-black with an ember glow (the story stage).
+- Halfway through, a centred mask-reveal line appears and holds: "Here's what most visitors see." (H2 size). It fades out as the phone arrives.
 
-1. **"A wall of words."** Spotlight on the centred grey paragraph. Body: "They came to see if you can fix it today. Nobody reads this to find out." The page inside the phone is the bad page at the top (header with script logo, centred blue serif title "Welcome to Arctic Breeze Air Conditioning", then ~120 words of grey centred text).
-2. **"Where's the number?"** The bad page scrolls down inside the phone (translateY) hunting; a timer chip appears on the phone's top-left outside the screen edge (or in the caption on phones): "Looking for a number 0:00" counting with scrub to 1:52 (tabular-nums, ember). Spotlight follows a tiny grey "Contact us" link buried at the bottom of the text. Body: "It's there. Somewhere. Most people won't keep looking."
-3. **"Sign up first?"** A popup slides in over the bad page ("Subscribe to our newsletter for specials!", name/email fields, grey button). Spotlight on the popup. Body: "It asks for their email before it's helped them at all."
-4. **"Tiny photos, right at the end."** Popup dismissed (tap ring taps the ×), page scrolls to a grid of 6 small washed-out photo tiles (drawn with CSS gradients, no real photos) under a heading "Gallery". Spotlight on the grid. Body: "Your best work, shrunk and hidden where nobody scrolls."
-5. **"Back. Next result."** The tap ring hits a browser back chevron; the phone screen slides right to the search results again; the 2nd result "CoolFix Aircon Joburg" gets tapped. The caption headline: "They just called someone else." Body: "Not because you're worse. Because your site made it hard." The progress dots all fill.
+**Beat 3: the before site (~30% → ~36%)**
+- A realistic iPhone frame rises from below (reuse the demo's `.phone/.bezel/.screen/.island` with a 390×844 inner screen scaled by `--s`; `--ph: min(70svh,640px)` desktop, `min(58svh,520px)` phone). Desktop: phone on the right half, caption column on the left. Phone (<820px): caption block on top (max 3 short lines), phone below it, both inside the stage.
+- The screen shows the **Aurelius "before" site**: a typical, modern-ish, WORKING template site, nothing broken, just generic. White background, system sans (Arial/Helvetica), a top bar with "AURELIUS" in a plain bold font + hamburger, a full-width hero block: the statue image (no glasses) small and awkwardly cropped in a light-grey banner with a dark overlay, centred heading "Welcome to Aurelius" and the line "Quality you can trust. Excellence in everything we do." and a generic rounded blue button "Learn more"; then "About Us" centred heading + a centred ~70-word paragraph of generic text ("At Aurelius we are passionate about delivering the highest quality… our dedicated team… customer satisfaction is our top priority…"); then three identical boxes with simple line icons "Quality / Service / Experience", each with two lines of filler; then a footer with © and tiny links; a thin cookie bar pinned at the bottom of the screen ("We use cookies to improve your experience. Accept"). Clean but forgettable.
+- Caption column contents: mono counter "01 / 05", a one-line headline (H3 size), one line of body (ink2), 5 progress dots (active = ember).
 
-**Beat 8: The switch (the big moment)**
-- Caption out. A huge ember gradient arch (Elena "Award Winning" style: a shape with a big curved top edge, full width, from below the viewport) sweeps up over the whole stage, covering phone and captions. On it, centred, the line reveals with the mask effect: "Now picture it like this." (H2 size, white). Hold.
-- The arch continues up and off the top (or shrinks into the phone screen) revealing the stage again: black background, the phone now centre, showing OUR rebuilt Arctic Breeze site.
+**Beats 4–8: five moments, ONE at a time, never stacked**
+Inside the phone, a spotlight layer: an element with a huge `box-shadow: 0 0 0 999px rgba(0,0,0,.6)`, radius 14px, that moves/resizes (transform + scale only; or one pre-sized element per moment cross-faded) to frame the part being discussed in 390×844 coordinates. Per moment: spotlight moves → old caption out (up 12px, fade) → new caption in (from 12px below) → long hold → next. Only one caption is ever visible.
+1. **"It works."** Spotlight: the whole first screen. Body: "Nothing's broken. It loads, the buttons work. It's just… fine."
+2. **"It looks like everyone else's."** Spotlight: the "Welcome to Aurelius / Quality you can trust" block. Body: "Same layout, same words. They've seen this five times today."
+3. **"Nothing says 'start here'."** The inner page scrolls down; spotlight on the three identical boxes. Body: "Every block is the same size, so nothing pulls them in."
+4. **"Asked too soon."** A popup slides up inside the phone ("Join our newsletter! Be the first to hear our news." email field, "Subscribe" button, small ×). Spotlight on it. Body: "It wants their email before it's earned their attention."
+5. **"Forgotten in seconds."** A tap ring taps ×; then the whole screen shrinks to a card and flicks off to the left like closing a tab (app-switcher feel), leaving the black screen with a faint home indicator. Body: "They didn't hate it. They just won't remember it." All five dots filled.
 
-**Beat 9: Rebuilt (the statue site)**
-Our rebuilt Arctic Breeze site inside the phone (390×844 coded page, dark, premium):
-- Top bar: small "ARCTIC BREEZE" wordmark (mono, letter-spaced) left, round green WhatsApp icon button right.
-- Hero: the statue image (marble bust wearing lime-green sport sunglasses) filling the upper ~60% of the screen, black background with a cool blue-white rim light. Over the bottom of the image, a huge headline "Stay cool." (white, 64px, tight) and a line "Same-day aircon repairs across Joburg." and two buttons: green "WhatsApp us" (with icon) and outlined "See prices".
-- Below (revealed by the inner page scrolling a little): three compact cards "Repairs from R650", "Installs", "Services", each a single line; then 4 large photo-like tiles (CSS gradient placeholders, cool blues) in a 2×2 grid.
-- Desktop: as the rebuilt site lands, the left caption column returns with headline "Same business. Built by BrandMasters." and three ticks that appear one by one: "WhatsApp in one tap", "Prices up front", "Opens fast on any phone". On phones these become the caption above the phone.
-- Timer chip changes to green: "Time to WhatsApp 0:08".
-- A tap ring taps the WhatsApp button inside the phone and a tiny WhatsApp chat sheet slides up inside the phone: "Hi! Can you come today?" (sent bubble) → "Yes, 2pm works. 👍" (received). (This is the only emoji, inside the mock chat. Keep it.)
-- End of pin. The phone scales down slightly and the stage unpins into the next section.
+**Beat 9: the switch**
+Caption out. A huge ember gradient arch (big curved top edge, full width, Elena "Award Winning" style) sweeps up from below over the whole stage. On it, centred, mask-reveal: "Now picture it like this." Hold. The arch continues up and off the top, revealing the stage: black, phone centred.
 
-**Statue image**: Evan will supply it from this prompt: "Classical white marble bust of a Greek statue, three-quarter view, wearing modern lime-green wraparound sport sunglasses, dramatic studio lighting, deep black background, warm orange rim light from the right, ultra sharp, editorial, 4:5". Until then, `assets/statue.webp` is a stand-in: render one with code (canvas or SVG → PNG via Playwright → cwebp or sharp if available, else PNG): a pale grey-white classical bust silhouette (head, neck, shoulders as soft gradient shapes) with a lime-green (#c6f432) wraparound sunglasses band and an orange rim light. It just needs to read as "statue with sunglasses" at phone size. Fixed width/height attributes, `decoding="async"`, under 60 KB.
+**Beat 10: the after site (same brand, rebuilt by us)**
+Inside the phone, the **Aurelius rebuilt** site (390×844, dark, premium, it is a mini version of our own hero, a deliberate callback):
+- Top: "AURELIUS" wordmark (mono, letter-spaced, small) left, a small white pill "Enter" right.
+- The statue WITH the ember glasses filling the upper ~62%, ember rim light, black background; over its lower part a huge white headline "Made to be looked at." (56px, tight), a line "Aurelius. Est. 2026." (mono, ink3) and one clear ember button "Explore".
+- The inner page then scrolls slightly to show a horizontal row of 3 dark cards with ember edges peeking ("01 Collection", "02 Story", "03 Visit"), then settles back.
+- Caption (left on desktop, above on phone): headline "Same brand. Built by BrandMasters." and three ticks appearing one by one: "Remembered at first glance", "One clear next step", "Opens fast on any phone".
+- End of pin: the phone scales down slightly and the stage unpins into the next section.
+
+**Reduced motion**: no pin; show the hero lit with glasses on, then the five moments as a static list each with its own small phone screenshot-state (built from the same DOM, statically positioned), then the after phone.
 
 ### 2. Before / After (`#compare`): interactive
-- H2: "Same company. Spot the difference." Small ink2 line: "Drag the line."
-- A large rounded frame (16:10 desktop, 4:5 phone) showing two desktop-browser-sized mocks stacked: left = the bad Arctic Breeze page (desktop version: white, centred serif title, grey wall of text, nav of 8 plain links), right = our rebuilt Arctic Breeze page (desktop version: black, statue on the right, "Stay cool." headline left, WhatsApp + prices buttons, three service chips). A vertical handle (2px white line + 44px round knob with ‹ › arrows) splits them; drag (pointer events, works with touch and mouse, keyboard arrows when focused) sets `clip-path: inset(0 0 0 X%)` on the top layer. On first view it auto-sweeps 50% → 70% → 30% → 50% once to show it's draggable.
-- Under it, two mono labels at each side: "Before" and "After".
+- H2: "Same brand. Spot the difference." Small ink2 line: "Drag the line."
+- A large rounded frame (16:10 desktop, 4:5 phone) with two desktop-browser mocks stacked: under = the Aurelius BEFORE site (desktop version: white, plain top bar with 6 links + "Contact Us" button, grey banner with small statue, centred "Welcome to Aurelius", three equal boxes); over = the Aurelius AFTER site (desktop version: black, statue with ember glasses on the right, huge "Made to be looked at." left, ember "Explore" button, ember glow). A vertical handle (2px white line + 44px round knob with ‹ ›) splits them; pointer drag (mouse + touch) and keyboard arrows when focused set `clip-path: inset(0 0 0 X%)` on the top layer. On first view it auto-sweeps 50% → 72% → 28% → 50% once.
+- Mono labels under each side: "Before: it works" and "After: it's remembered".
 
 ### 3. Who it's for (`#who`): kinetic type, no photos
 - H2 reveals: "For every business people look up."
 - A huge single line below: "Your [word] deserves better." where [word] cycles (vertical slot-machine roll, transform only, every 1.6s, pauses when offscreen): café, salon, guesthouse, practice, workshop, shop, studio, restaurant, gym, clinic. The word is in ember gradient.
-- Two marquee rows of business types in outline pills, scrolling in opposite directions slowly (CSS animation on transform; speed nudged by scroll velocity on desktop): "Cafés · Salons · Guesthouses · Dentists · Plumbers · Electricians · Restaurants · Boutiques · Gyms · Vets · Mechanics · Photographers · Lawyers · Florists · Aircon · Bakeries".
+- Two marquee rows of business types in outline pills, scrolling in opposite directions slowly (CSS animation on transform; speed nudged by scroll velocity on desktop): "Cafés · Salons · Guesthouses · Dentists · Restaurants · Boutiques · Gyms · Vets · Photographers · Lawyers · Florists · Bakeries".
 - Line under (ink2, max 52ch): "If your customers find you on their phone, your site is your shopfront. We make it one people remember, and want to show off."
 
 ### 4. What we do (`#what`): horizontal card row (Elena style)
@@ -146,7 +153,7 @@ Our rebuilt Arctic Breeze site inside the phone (390×844 coded page, dark, prem
   - **Premium, R24,500**: "A one-of-a-kind site built around your brand, like this one." Includes: Everything in Professional · Custom motion pieces · Up to 10 pages · Copywriting for every page · Priority changes for 30 days · Live in about 3–4 weeks.
   - Button on each: "Start with Essential/Professional/Premium" → WhatsApp with prefilled text "Hi BrandMasters, I'm interested in the {name} package."
 - Below: a slim row "Care R500/month: hosting, security, speed, small changes." and "Care Plus R1,200/month: everything in Care, plus monthly updates and a Google report." with a toggle look (two pills).
-- Mono small print: "50% deposit to start, balance at launch. EFT."
+- Mono small print: "50% deposit to start, balance at launch. EFT. Your domain and logins are always yours."
 - Mark ALL package contents and timelines with an HTML comment `<!-- DRAFT: Evan to confirm -->`.
 
 ### 7. Real work (`#work`)
@@ -159,7 +166,7 @@ Our rebuilt Arctic Breeze site inside the phone (390×844 coded page, dark, prem
   1. **How long does it take?** "About 1 week for Essential, 2 for Professional and 3 to 4 for Premium, from the day we have your content."
   2. **What do you need from me?** "Your logo if you have one, a few photos of your work or space, and 10 minutes on WhatsApp. We write the words."
   3. **I already have a site. Can you work with it?** "Yes. Send us the link. We keep what works, fix what doesn't, and move it across."
-  4. **Who owns the site?** "You do. Your domain, your content. If you ever leave, we hand it all over."
+  4. **Who owns the site?** "You do. Your domain, your site and every login are yours. If you ever leave, we hand it all over."
   5. **How do I pay?** "50% deposit to start, the rest when it goes live. EFT."
   6. **Do I need the monthly care plan?** "No, it's optional. It covers hosting, security, speed and small changes so you never have to think about it."
   7. **Will it work on all phones?** "Yes. We test on iPhone and Android, big and small, and keep it light so it opens fast on mobile data."
@@ -173,15 +180,18 @@ Our rebuilt Arctic Breeze site inside the phone (390×844 coded page, dark, prem
 - Button "Send this to us on WhatsApp" → `https://wa.me/27810898573?text=` + encodeURIComponent("Hi BrandMasters, I'd like a site for {name}.") (or without name if empty). Also show the number as plain selectable text under it: "or WhatsApp 081 089 8573".
 - Below the card: giant faint wordmark "BrandMasters" that rises slightly with scroll (parallax y), letter-spacing -.06em, gradient from ink 14% to transparent, cropped by the page bottom.
 
-### 10. Footer
-- Small row: "BrandMasters · Web design studio · Johannesburg, South Africa" · "They see your site first." · "© 2026". Links: How it works, Prices, Questions, WhatsApp.
+### 10. Privacy page
+`site/privacy.html` in the same style (simple, readable, nav back home). POPIA content: who we are (BrandMasters, Johannesburg web design studio, contact via WhatsApp 081 089 8573); what we collect (only what people send us on WhatsApp, e.g. name, business name, number; the site has no forms that store data and no ad trackers); why (to reply and quote); we don't sell or share it; how long we keep it (as long as the project needs, or until they ask us to delete it); their POPIA rights (ask what we hold, correct or delete it) via WhatsApp; complaints: the Information Regulator of South Africa (inforegulator.org.za). Mark `<!-- DRAFT: Evan to confirm -->`. Linked from the footer and listed in sitemap.xml.
+
+### 11. Footer
+- Small row: "BrandMasters · Web design studio · Johannesburg, South Africa" · "They see your site first." · "© 2026". Links: How it works, Prices, Questions, WhatsApp, Privacy.
 
 ## SEO and sharing (in index.html head)
 - `<title>Web Design Johannesburg | BrandMasters: They see your site first</title>`
 - meta description (≤155 chars): "Premium websites for South African businesses. Clear once-off prices from R6,500, WhatsApp-first, built fast for every phone. Based in Johannesburg."
 - canonical `https://brandmasters.co.za/`, `lang="en-ZA"`, theme-color #050505, OG + Twitter tags with `assets/og.png` (1200×630: black, ember glow, "They see your site first." + "BrandMasters · Web design, Johannesburg"), favicon.svg.
 - JSON-LD: `ProfessionalService` (name BrandMasters, url, telephone +27810898573, areaServed: Johannesburg, Gauteng, South Africa; address locality Johannesburg, region Gauteng, country ZA; priceRange "R6,500–R24,500"; slogan; `makesOffer` with the 3 packages as Offer with price + priceCurrency ZAR) and `FAQPage` with the 7 Q&As. No person, no email.
-- All story text in the DOM as text (captions included), so Google reads: "aircon", "Johannesburg", "web design" naturally appear.
+- All story text in the DOM as text (captions included), so Google reads "website", "Johannesburg", "web design", "South Africa" naturally.
 - `robots.txt` (allow all, sitemap line), `sitemap.xml` with the home URL.
 - Images: width/height set, `alt` text, `loading="lazy"` for everything below the first screen.
 
