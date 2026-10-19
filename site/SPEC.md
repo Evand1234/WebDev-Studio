@@ -1,4 +1,4 @@
-# BrandMasters site: build spec (v3, 19 Oct 2026; see "v3 changes" at the end, they override)
+# BrandMasters site: build spec (v4, 19 Oct 2026; read "v3 changes" then "v4 changes" at the end; later sections override earlier ones)
 
 > v2 replaces v1's aircon search hero and story. Evan (09:28–09:30): no real businesses or trades anywhere; the statue with sunglasses leads; it should feel like a creative online brand that makes owners want an online-first site. Hero = option A "Glasses on". Keep a before site that is ordinary and WORKING, just forgettable (not broken, not 2016).
 
@@ -249,3 +249,42 @@ Do NOT put the statue anywhere else.
 - Remove anything cartoon-like: fake tap rings become a subtle real-looking touch indicator (a 28px soft white dot at 35% opacity with a quick 150ms press scale, no outline ring, no ripple circles).
 - No elements flying in from off-screen during the story except the phone rising once. Inside the phone: page scrolls, popup slides up (as on a real phone), spotlight moves. That's it.
 - Shadows and glows must look physical: no hard-edged glows, no neon outlines on the phone.
+
+---
+
+## v4 changes (19 Oct 2026, 13:42, Evan's review of draft 2). These OVERRIDE everything above.
+Evan: the statue looked horrible and confusing in the hero. The hero must be something else: unique, creative, reacting to the cursor, matching our site. The statue belongs ONLY inside the demo of "our site" (the after phone), as that site's hero. The after part must feel like a WHOLE DIFFERENT SCENE that is clearly OUR work and why it's better, not "still comparing". Zooming into the sunglasses must be quicker than in draft 2 (not rushed). Statue: dark grey stone, looks like a real person (Greek god), real two-lens sunglasses with green lenses.
+
+### 1. New hero: "The lens" (`#story` start). No statue.
+Idea: the internet is a wall of forgettable sites; our cursor is a lens that shows what they could be.
+- Full-screen stage, black. Behind the headline: a **wall of website tiles** (4 columns desktop, 2 phone; ~24 tiles; mixed heights 3:4, 4:5, 16:10, rounded 14px, 12px gaps). Columns drift slowly and endlessly in alternating directions (translateY loop, ~60s per cycle, paused offscreen) and shift a few px with cursor parallax.
+- Two identical walls stacked, same tile positions:
+  - **Layer A, "ordinary"**: every tile is a generic grey site wireframe (light-grey header bar, grey image block, 3 text lines, a dull blue button), dimmed (opacity .35), slightly blurred only via a static CSS filter on the layer (never animated).
+  - **Layer B, "BrandMasters"**: the same tiles redesigned as premium dark sites: black with ember gradients, big 2–3 word display type ("Made to stay.", "Open late.", "Book in one tap.", "Fresh daily.", "Look closer." etc., no real business names), lime accents, glow. Each tile is a tiny but believable site hero. Pure HTML/CSS, no images.
+  - Layer B is visible only inside a **lens**: a circle following the cursor with lerp .12 (radius 170px desktop, 120px phone), implemented as `mask-image: radial-gradient(circle var(--r) at var(--x) var(--y), #000 98%, transparent 100%)` (soft 2% edge) on layer B, plus a separate thin lens ring element (1px rgba(255,255,255,.25), inner subtle shadow) that follows the same point. The ring scales 1.15 when over a button.
+- Headline in the centre above both walls (with a soft black radial scrim behind it so it's always readable): H1 "They see your / site first." ("site first." ember gradient), sub line "Most websites work. Few get remembered. We build the ones people show off.", buttons (lime "WhatsApp us", ghost "See how"). Corner labels stay (mono): "Web design studio" / "Johannesburg, ZA" / "Move to look closer" (desktop) or "Drag to look closer" (touch) / "(01)".
+- Load sequence (~1.6s): walls fade up (A first, then the lens opens from radius 0 → full with power2.out at screen centre), H1 mask reveal, the rest follows.
+- Touch devices: the lens glides on a slow lissajous path across the wall; while a finger is down on the hero, the lens follows the finger (does not block vertical scrolling: use pointer events with `touch-action: pan-y` and only update the lens position, never preventDefault).
+- Reduced motion: no drift; lens fixed at the right third.
+- Scroll (scrub), ~1.5 viewport heights: the H1 and UI drift up and fade; the lens shrinks to 0 (the colour leaves, everything is ordinary again); the camera pushes into ONE grey tile near the centre (scale up, origin at that tile) which becomes the Aurelius BEFORE phone screen. During the push: "Here's what most visitors see." (mask reveal, hold, out). Then the existing phone + 5 moments run exactly as in draft 2 (keep captions, spotlight, holds, lime dots).
+
+### 2. The after part: a different scene, clearly ours
+After moment 5, the ember arch "Now picture it like this." stays. Then a NEW SCENE, visually distinct from everything before:
+- Background: a lit "studio" instead of the dark story: a deep warm gradient (ember at 25% from the bottom up into black), a faint floor reflection under the phone, and a very subtle lime rim light on the phone edges. The grey/dim story look must be gone.
+- Big eyebrow at the top, mono lime: "BUILT BY BRANDMASTERS". Under it, H2 (white): "This is what we make."
+- The phone is larger here than in the before scenes (`--ph: min(78svh, 700px)` desktop, `min(66svh, 600px)` phone), centred, and shows the **Aurelius after site**: the dark grey statue photo (with real green-lens sunglasses) as a full-bleed hero, headline "Made to be looked at.", one lime button "Explore". The inner page scrolls a little to show 2 cards, then settles back.
+- Then three **callouts**, ONE at a time (desktop: left/right of the phone with a thin 1px leader line pointing to the exact part of the phone; phone: one caption chip at the bottom of the stage, the matching part of the phone gets a soft lime outline). Each: lime mono number + one line + one short line:
+  1. "Stops the scroll." "One bold image, one line. Remembered at first glance." (points at the statue/headline)
+  2. "One clear next step." "A single button. No guessing where to tap." (points at the Explore button)
+  3. "Light and fast." "Built for phones on mobile data." (points at the status bar / whole phone)
+- Then the **zoom into his sunglasses**: the camera pushes into the left lens of the statue's sunglasses (origin at the lens; vars `--lx --ly` in the phone image's coordinates) until the green lens fills the screen, then the green fades to black into the next section. Scroll length for the zoom: about **0.9 viewport heights on desktop and 1.1 on phones** (faster than draft 2's hero push, but not rushed). Hold the full-green frame very briefly (0.15 vh) so it registers.
+- Pin length for the whole story is now: desktop ~11 vh, phone ~15 vh. Keep the 2:1 hold-to-move ratio on the 5 moments and the callouts.
+
+### 3. Statue: only inside the "our site" demo
+- The statue appears ONLY in: the after phone (above) and the AFTER side of the compare slider (same brand). Remove it from the end card and anywhere else.
+- End card: go back to the brand-kit idea: a phone mock beside the input that live-renders THEIR site in our style (their name as the headline, "Johannesburg" mono line, lime WhatsApp pill, ember glow). Keep the WhatsApp prefill.
+- Nav mark / eyebrow marker / favicon: replace the visor shape with a simple lime dot (8px). Favicon: black rounded square with a lime dot and a white "B".
+- Statue asset: `assets/statue-4x5.webp` (phone) and `assets/statue-16x9.webp` (compare, desktop). Evan's final photo (or a generated one) will replace them: photorealistic **dark grey stone** bust of a Greek god (curly hair, beard), real modern **two-lens sunglasses with green lenses** and a black frame, black background, studio light. Until it arrives, the stand-in must be **dark grey** (charcoal stone, not white, not cartoonish), with real sunglasses (two separate lenses, bridge, frame), no visor. Keep `--lx --ly` (left-lens centre, % of the image) per crop for the zoom.
+
+### 4. Everything else
+Keep all other sections, lime usage, slower phone timings and the realistic-motion rules from v3. Remove dead code from the old statue hero (lightmask, rig, visor reflection on the end card).
